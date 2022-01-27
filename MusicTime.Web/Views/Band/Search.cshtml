@@ -1,0 +1,42 @@
+@model IEnumerable<MusicTime.Domain.Band>
+@{
+    ViewBag.Title = "Search";
+}
+<head>
+  @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">*@
+</head>
+<h2>Search Results</h2>
+<table class="table table-condensed table-bordered table-dark">
+  <tr>
+    <th>
+      Band
+    </th>
+    <th>
+      Bio
+    </th>
+    <th>
+      Genre
+    </th>
+  </tr>
+  @foreach (var band in Model)
+      {
+        <tr>
+          <td>
+            @band.Name
+          </td>
+          <td>
+            @band.BandBio
+          </td>
+          <td>
+            @band.Genre
+          </td>
+          <td>
+            @Html.ActionLink("Details", "Details", new { id = band.id })
+          </td>
+        </tr>
+      }
+</table>
+<div>
+  @Html.ActionLink("Back to List", "Index")
+</div>
+
