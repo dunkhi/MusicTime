@@ -35,3 +35,16 @@ C:\Users\craig\source\repos\MusicTime\MusicTime.Data\bin\Debug\System.Web.WebPag
 C:\Users\craig\source\repos\MusicTime\MusicTime.Data\bin\Debug\System.Web.Helpers.dll
 C:\Users\craig\source\repos\MusicTime\MusicTime.Data\bin\Debug\System.Web.Helpers.xml
 C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.Migrations.CustomerEditViewModel.resources
+C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.Migrations.changebackcevm.resources
+C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.Migrations.removeCustomEditViewModel.resources
+C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.Migrations.customerid.resources
+C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.Migrations.CEVMadditionalfields.resources
+C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.Migrations.202202011838240_BlipAjax-Tables.resources
+C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.Migrations.EmptyMigration.resources
+C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.Migrations.EmailToCustomerTable.resources
+C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.Migrations.AddressTypeChange.resources
+C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.Migrations.EmailPostalAddressIds.resources
+C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.Migrations.EmailPostalAddressIds2.resources
+C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.Migrations.IDK.resources
+C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.Migrations.PostalDefault.resources
+C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.Migrations.SomethingNotDropped.resources

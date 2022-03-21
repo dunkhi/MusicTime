@@ -9,16 +9,18 @@ namespace MusicTime.Domain.View_Models
 {
   public class CustomerDisplayViewModel
   {
-    [Display(Name = "Customer Number")]
-    public Guid CustomerID { get; set; }
+    public int Id { get; set; }
 
-    [Display(Name = "Customer Name")]
+    [Display(Name = "Name")]
     public string CustomerName { get; set; }
+
+    [Display(Name = "Username")]
+    public string UserName { get; set; }
 
     [Display(Name = "Country")]
     public string CountryName { get; set; }
 
-    [Display(Name = "State / Province / Region")]
+    [Display(Name = "State")]
     public string RegionName { get; set; }
   }
 }

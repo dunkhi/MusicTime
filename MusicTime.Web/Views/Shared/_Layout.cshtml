@@ -4,6 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@ViewBag.Title - My ASP.NET Application</title>
+  <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+  <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js" integrity="sha512-DedNBWPF0hLGUPNbCYfj8qjlEnNE92Fqn7xd3Sscfu7ipy7Zu33unHdugqRD3c4Vj7/yLv+slqZhMls/4Oc7Zg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   @Styles.Render("~/Content/css")
   @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -22,6 +25,8 @@
         <ul class="nav navbar-nav">
           <li>@Html.ActionLink("Band", "Index", "Band")</li>
           <li>@Html.ActionLink("Artists", "Index", "Artists")</li>
+          <li>@Html.ActionLink("ArtistAjax", "IndexAjax", "Artists")</li>
+          <li>@Html.ActionLink("Customer", "Index", "Customer")</li>
         </ul>
         @using (Html.BeginForm("Search", "Band", FormMethod.Get, new
         {
@@ -36,7 +41,7 @@
       </div>
     </div>
   </div>
-  <div class="container body-content">
+  <div class="container body-content" style="margin-top: 15px;">
     @RenderBody()
     <hr />
     <footer>
@@ -45,8 +50,9 @@
   </div>
 
   @Scripts.Render("~/bundles/jquery")
-  @Scripts.Render("~/bundles/bootstrap")
+  @*@Scripts.Render("~/bundles/bootstrap")*@
   @Scripts.Render("~/bundles/App")
+  @Scripts.Render("~/bundles/jqueryunobstrusive")
   @RenderSection("scripts", required: false)
 </body>
 </html>

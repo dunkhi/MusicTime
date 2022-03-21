@@ -1,0 +1,10 @@
+@model int?
+@{
+    ViewBag.Title = "SetDefaultEmail";
+  Layout = null;
+}
+
+
+<div id="EditCustomerEmailPartial">
+  @Html.Action("EditCustomerEmailPartial", new { id = @Model })
+</div>

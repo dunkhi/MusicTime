@@ -1,0 +1,13 @@
+@model MusicTime.Domain.Artist
+
+<h3>Artist Details</h3>
+Name: @Html.DisplayFor(a => Model.FirstName) @Html.DisplayFor(a => Model.LastName)
+<br />
+@Html.DisplayNameFor(a => a.Age): @Html.DisplayFor(a => Model.Age)
+<br />
+@Html.DisplayNameFor(a => a.Band): @Html.DisplayFor(a => a.Band.Name)
+<br />
+@Html.DisplayNameFor(a => a.Instrument): @Html.DisplayFor(a => a.Instrument)
+<br />
+@Html.DisplayNameFor(a => a.ArtistBio): @Html.DisplayFor(a => a.ArtistBio)
+<p>Updated at @DateTime.Now</p>

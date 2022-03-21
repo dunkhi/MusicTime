@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressType.cs" />
     <Compile Include="Album.cs" />
     <Compile Include="Artist.cs" />
     <Compile Include="Band.cs" />
@@ -78,21 +79,34 @@
     <Compile Include="Country.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerOrder.cs" />
+    <Compile Include="EmailAddress.cs" />
+    <Compile Include="Enums\AddressTypeEnum.cs" />
     <Compile Include="Enums\GenreEnum.cs" />
     <Compile Include="Enums\Instrument.cs" />
     <Compile Include="Enums\VenueType.cs" />
+    <Compile Include="PostalAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Region.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="TicketOrder.cs" />
     <Compile Include="Venue.cs" />
+    <Compile Include="View Models\AddressTypeViewModel.cs" />
     <Compile Include="View Models\CustomerDisplayViewModel.cs" />
     <Compile Include="View Models\CustomerEditViewModel.cs" />
+    <Compile Include="View Models\EmailAddressListViewModel.cs" />
+    <Compile Include="View Models\EmailAddressViewModel.cs" />
+    <Compile Include="View Models\PostalAddressEditViewModel.cs" />
+    <Compile Include="View Models\PostalAddressListViewModel.cs" />
+    <Compile Include="View Models\PostalAddressViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="AdventureWorks\" />
+    <Folder Include="PARS\Models\" />
+    <Folder Include="PARS\View Models\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

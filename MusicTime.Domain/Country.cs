@@ -15,6 +15,7 @@ namespace MusicTime.Domain
 
     [Required]
     [MaxLength(50)]
+    [Display(Name = "Country")]
     public string CountryNameEnglish { get; set; }
 
     public virtual IEnumerable<Region> Regions { get; set; }

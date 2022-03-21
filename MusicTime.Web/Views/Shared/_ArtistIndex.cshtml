@@ -1,0 +1,21 @@
+@model IEnumerable<MusicTime.Domain.Artist>
+
+<h3>Index Partial</h3>
+
+<table>
+  <tr>
+    <th>
+      @Html.DisplayNameFor(a => a.FirstName)
+    </th>
+  </tr>
+  @foreach (var artist in Model)
+  {
+
+    <tr>
+      <td>
+        @Html.DisplayFor(a => artist.FirstName)
+      </td>
+    </tr>
+    
+  }
+</table>

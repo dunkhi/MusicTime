@@ -1,0 +1,94 @@
+.columns {
+  border: solid 1px #b6ff00;
+  width: 100%;
+}
+
+  .columns > div {
+    border: solid 1px #a319c4;
+  }
+
+#colLabels {
+  border: solid 1px #ad36b2;
+}
+
+#lblUserName {
+  margin-top: 15px;
+}
+
+#lblFirstName {
+  margin-top: 10px;
+}
+
+#lblLastName {
+  margin-top: 15px;
+}
+
+#lblCountry {
+  margin-top: 20px;
+}
+
+#colInputs {
+  border: solid 1px #3364a7;
+}
+
+#divTable {
+  border: solid 1px red;
+}
+
+.divDrop {
+  margin-top: 15px;
+}
+
+#divSubmit {
+  margin-top: 45px;
+  padding-left: 100px;
+}
+
+#cptTable {
+  margin-top: 50px;
+  font-size: 20px;
+  padding-left: 450px;
+  color: black;
+  background-color: #81b7f0;
+}
+
+#btnEditPostal {
+  margin-left: 10px;
+  margin-right: 15px;
+}
+
+.formPostalAddress {
+  border: 1px solid red;
+}
+
+#cptEmail {
+  background-color: #81b7f0;
+}
+
+caption {
+  background-color: #81b7f0;
+}
+
+.thEmailTable {
+  font-size: 15px;
+  align-content: center;
+  text-align: center;
+}
+
+#tdIsDefault {
+  align-content: center;
+  text-align: center;
+}
+
+#trEmailTable {
+  text-align: center;
+}
+
+h4 {
+  font-size: 25px;
+  margin-top: 20px;
+}
+
+#divForm {
+  background-color: green;
+}

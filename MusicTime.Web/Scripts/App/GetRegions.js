@@ -9,22 +9,24 @@ $('#Country').change(function () {
   var countryIndex = $('#Country option:selected').index();
   regionsSelect.empty();
   if (selectedCountry != null && $("#Country option:selected").index() != 0) {
-    console.log('If Statement');
-    $.getJSON('GetRegions'), { isoCode: selectedCountry }, function (regions) {
-      if (regions != null && !jQuery.isEmptyObject(regions))
-      {
-        regionsSelect.append($('<option/>', {
-          value: null,
-          text: ""
-        }));
-        $.each(regions, function (i, region) {
-          regionsSelect.append($('<option/>', {
-            value: region.Value,
-            text: region.Text
-          }))
-        })
+
+    $.ajax({
+      url: "/Customer/GetRegions",
+      data: {countryCode: selectedCountry}, //this could also be form data
+      contentType: "application/json",
+      success: function (result) {
+        var ddlAppendData = '';
+        if (result != null) {
+          $.each(result, function (i, region) {
+            ddlAppendData += '<option value="' + region.Value + '">' + region.Text + "</option>";
+          });
+          regionsSelect.append(ddlAppendData);
+        }
+        
       }
-    }
+    });
+
+
     console.log('TRUE');
   }
   else {
@@ -33,3 +35,7 @@ $('#Country').change(function () {
   var value = $('#Country option:selected');
   console.log('Selected Country:' + selectedCountry + ', ' + 'Selected Dropdown Text: ' + value.text() + ', Country Index: ' + countryIndex);
 })
+
+function postSuccess() {
+  alert('post success from getregions');
+}

@@ -1,0 +1,207 @@
+@model MusicTime.Domain.View_Models.CustomerEditViewModel
+
+@{ ViewBag.Title = "Details"; }
+<head>
+  @* <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet"> *@
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
+
+  <link href="@Url.Content("~/Content/EditCustomerEmailPartial.css")" rel="stylesheet" type="text/css" />
+</head>
+@using (Html.BeginForm("EditCustomerEmailPartial", "Customer", FormMethod.Post))
+{
+<header>
+</header>
+        <div>
+          <main id="main">
+            <form>
+              <fieldset>
+                <legend>Edit Customer Details</legend>
+                <div class="row columns">
+                  @Html.HiddenFor(model => model.Id)
+                  <div class="col-md-7">
+                    <div class="col-md-2" id="colLabels">
+                      <p id="lblFirstName">
+                        @Html.LabelFor(model => model.FirstName)
+                      </p>
+                      <p id="lblLastName">
+                        @Html.LabelFor(model => model.LastName)
+                      </p>
+                      <p id="lblUserName">
+                        @Html.LabelFor(model => model.UserName)
+                      </p>
+                      <p id="lblCountry">
+                        @Html.LabelFor(model => model.SelectedCountryIso3, htmlAttributes: new { @class = "" })
+                      </p>
+                      <p>
+                        @Html.LabelFor(model => model.SelectedRegionCode, htmlAttributes: new { @class = "" })
+                      </p>
+                    </div>
+                    <div class="col-md-5" id="colInputs">
+                      <p>
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FirstName)
+                      </p>
+                      <p>
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LastName)
+                      </p>
+                      <p>
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                      </p>
+                      <p>
+                        @Html.DropDownListFor(x => Model.SelectedCountryIso3, new SelectList(Model.Countries, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Country" })
+                      </p>
+                      <p>
+                        @Html.DropDownListFor(x => Model.SelectedRegionCode, new SelectList(Model.Regions, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Region" })
+                      </p>
+                      <p>
+                        <input type="submit" value="Save Changes" class="btn-success pull-right" />
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-md-5" id="divTable">
+                    @if (Model.EmailAddresses.Count() > 0)
+                    {
+                  <table class="table table-condensed table-striped table-bordered table-hover active">
+                    <caption id="cptEmail" style="text-align:center;">Emails Registered for User</caption>
+                    <tr class="success">
+                      <th class="thEmailTable">
+                        Email
+                      </th>
+                      <th class="thEmailTable">
+                        Is Default
+                      </th>
+                      <th class="thEmailTable">
+                        Set Default
+                      </th>
+                      <th class="thEmailTable">
+                        Delete
+                      </th>
+                    </tr>
+                    @foreach (var email in Model.EmailAddresses)
+                    {
+                  <tr id="trEmailTable">
+                    <td>
+                      @Html.DisplayFor(e => email.Email)
+                    </td>
+                    <td id="tdIsDefault">
+                      @Html.DisplayFor(e => email.IsDefault)
+                    </td>
+                    <td>
+                      @Html.ActionLink("Set to Default?", "SetDefaultEmail", "Customer", new { id = email.Id, customerId = email.CustomerId }, null)
+                    </td>
+                    <td>
+                      @Html.ActionLink("Delete", "DeleteEmail", "Customer", new {emailId = email.Id}, null)
+                    </td>
+                  </tr>
+                    }
+                  </table>
+                  <div>
+                    @Html.ActionLink("Create Email", "CreateEmailAddress", new { id = Model.Id }, htmlAttributes: new { @class="btn btn-info pull-right"})
+                  </div>
+                  }
+                          else
+                          {
+                            <table class="table table-condensed table-striped table-bordered table-hover active">
+                              <caption id="cptEmail" style="text-align:center;">Emails Registered for User</caption>
+                              <tr class="success">
+                                <th class="thEmailTable">
+                                  Email
+                                </th>
+                                <th class="thEmailTable">
+                                  Is Default
+                                </th>
+                                <th class="thEmailTable">
+                                  Set Default
+                                </th>
+                              </tr>
+                              </table>
+                              <div>
+                                <p>No email addresses found.</p>
+                              </div>
+                              <div>
+                                 @Html.ActionLink("Create Email", "CreateEmailAddress", new {id = Model.Id }, htmlAttributes: new { @class="btn btn-info pull-right"}) 
+                              </div>
+                              }
+                          </div>
+                </div>
+              </fieldset>
+            </form>
+            @if (Model.PostalAddresses.Count() > 0)
+            {
+    <form class="formPostalAddress">
+      <table class="table table-condensed table-striped table-bordered table-hover active">
+        <caption id="cptTable">Default Postal Address</caption>
+        <tr class="success">
+          <th>
+            @Html.LabelFor(e => e.DefaultPostalAddress.Iso3)
+          </th>
+          <th>
+            @Html.LabelFor(e => e.DefaultPostalAddress.RegionCode)
+          </th>
+          <th>
+            @Html.LabelFor(e => e.DefaultPostalAddress.City)
+          </th>
+          <th>
+            @Html.LabelFor(e => e.DefaultPostalAddress.StreetAddress1)
+          </th>
+          <th>
+            @Html.LabelFor(e => e.DefaultPostalAddress.PostalCode)
+          </th>
+        </tr>
+        <tr>
+          <td>
+            @Html.DisplayFor(p => p.DefaultPostalAddress.Iso3)
+          </td>
+          <td>
+            @Html.DisplayFor(p => p.DefaultPostalAddress.RegionCode)
+          </td>
+          <td>
+            @Html.DisplayFor(p => p.DefaultPostalAddress.City)
+          </td>
+          <td>
+            @Html.DisplayFor(p => p.DefaultPostalAddress.StreetAddress1)
+          </td>
+          <td>
+            @Html.DisplayFor(p => p.DefaultPostalAddress.PostalCode)
+          </td>
+        </tr>
+      </table>
+      <div class="row">
+        @Html.ActionLink("Edit Postal Addresses", "ViewPostalAddresses", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-success pull-right", @role = "button", @id = "btnEditPostal" })
+
+        @Html.ActionLink("Create Postal Address", "CreatePostalAddress", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-info pull-right", @role = "button" })
+      </div>
+    </form>}
+  else
+  {
+<form class="formPostalAddress">
+  <table class="table table-condensed table-striped table-bordered table-hover active">
+    <caption id="cptTable">Default Postal Address</caption>
+  </table>
+  <div class="col-md-12">
+    <p>No Postal Addresses for Customer</p>
+    <p>Please select the Create Postal Address button below to add one</p>
+  </div>
+  <div class="row">
+
+    @Html.ActionLink("Create Postal Address", "CreatePostalAddress", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-info pull-right", @role = "button", @style = "margin-right: 20px;"})
+  </div>
+</form>}
+
+          </main>
+        </div>}
+
+<p>
+  @Html.ActionLink("Back to List", "Index")
+</p>
+
+@section scripts {
+  @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+  <script>
+    function postSuccess() {
+      alert('post success from razor page');
+    }
+  </script>
+}
+<link href="~/Content/EditCustomerEmailPartial.css" />

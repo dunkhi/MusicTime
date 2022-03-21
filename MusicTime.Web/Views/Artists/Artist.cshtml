@@ -1,0 +1,53 @@
+@using MusicTime.Domain
+@model Tuple<List<Artist>, Artist>
+@{ Layout = "~/Views/Shared/_Layout2.cshtml";
+  AjaxOptions ajaxOptions = new AjaxOptions
+  {
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "artistInfo"
+  }; }
+
+<!DOCTYPE html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
+</head>
+
+<div class="row">
+  <div class="col-md-4">
+    @using (Ajax.BeginForm("OnSelectArtist", "Artists", ajaxOptions, new { id = "artistForm" }))
+    {
+  @Html.AntiForgeryToken();
+  var selected = false;
+
+  foreach (var artist in Model.Item1)
+  {
+    if (Model.Item2 == artist)
+    {
+      selected = true;
+    }
+    else
+    {
+      selected = false;
+    }
+
+  @Html.RadioButton("artistId", artist.Id, selected, new { onchange = "$('#artistForm').trigger('submit')" })
+            @Html.Label(artist.FirstName)
+                                <br />}
+                            }
+  </div>
+  <button type="button" id="anotherButton"></button>
+  <div class="col-md-8">
+    <div id="artistInfo">
+      @Html.Partial("~/Views/Shared/_ArtistDetails.cshtml", Model.Item2)
+    </div>
+  </div>
+</div>
+<div id="partialViewContainer">
+
+</div>
+
+
+@*insert partial view. model is part 1, list of customers, part2 is selected customer *@
+
+

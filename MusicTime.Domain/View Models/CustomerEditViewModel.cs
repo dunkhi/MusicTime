@@ -1,23 +1,22 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace MusicTime.Domain.View_Models
 {
   public class CustomerEditViewModel
   {
-    [Display(Name = "Customer Number")]
     [Key]
-    public string CustomerID { get; set; }
+    public int Id { get; set; }
 
-    [Required]
-    [Display(Name = "Customer Name")]
+    [Display(Name = "First Name")]
     [StringLength(75)]
-    public string CustomerName { get; set; }
+    public string FirstName { get; set; }
+
+    [Display(Name = "Last Name")]
+    public string LastName { get; set; }
+
+    public string UserName { get; set; }
 
     [Required]
     [Display(Name = "Country")]
@@ -28,6 +27,13 @@ namespace MusicTime.Domain.View_Models
     [Display(Name = "State / Region")]
     public string SelectedRegionCode { get; set; }
     public IEnumerable<SelectListItem> Regions { get; set; }
+
+    public int PostalAddressId { get; set; }
+    
+    public virtual PostalAddress DefaultPostalAddress { get; set; }
+
+    public IEnumerable<EmailAddress> EmailAddresses { get; set; }
+    public IEnumerable<PostalAddress> PostalAddresses { get; set; }
 
   }
 }

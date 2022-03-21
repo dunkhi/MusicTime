@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +11,11 @@ namespace MusicTime.Web.Controllers
     public ActionResult Index()
     {
       return View();
+    }
+
+    public String GetStatus()
+    {
+      return $"Status okay at: {DateTime.Now}";
     }
 
     public ActionResult About()

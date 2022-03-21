@@ -1,0 +1,43 @@
+@model int?
+
+@{
+  ViewBag.Title = "Edit";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js" ></script>
+<link href="~/Content/CustomerEdit.css" rel="stylesheet" type="text/css" />
+<div class="row">
+  <div class="col-md-12">
+    <h2>Edit Customer Information</h2>
+  </div>
+</div>
+
+<div id="EditCustomerPartial">
+  @Html.Action("EditCustomerPartial", new { id = @Model })
+</div>
+
+
+
+<div id="SelectAddressTypePartial">
+  @Html.Action("AddressTypePartial", new { id = @Model })
+  @*@Html.Partial("AddressTypePartial")*@
+</div>
+
+@*Ajax Partial Views Go Here*@
+<div id="CreateAddress" style="border: 1px solid red;"></div>
+
+<div id="testAddress"></div>
+
+<div class="row">
+  <div class="form-group">
+    <div class="col-md-12">
+      <hr />
+      <div>
+        @Html.ActionLink("Back to List", "Index")
+      </div>
+    </div>
+  </div>
+</div>
+
+@section scripts {
+  @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+  }

@@ -14,16 +14,56 @@ namespace MusicTime.Web.Controllers
   public class ArtistsController : Controller
   {
     private MusicTimeContext db = new MusicTimeContext();
+    List<Artist> artistsList = new List<Artist>();
 
-    // GET: Artists
-    public ActionResult Index(string searchTerm)
+    public ArtistsController()
     {
-      var artists = db.Artists.Include(a => a.Band);
+      artistsList = db.Artists.Include(a => a.Band).ToList();
+    }
+    // GET: Artists
+    public ActionResult Index(string searchTerm, string Instruments)
+    {
+      ViewBag.Instruments = db.Artists.Select(i => i.Instrument).Distinct();
+      var artists = db.Artists.Include(a => a.Band).ToList();
       if (!string.IsNullOrWhiteSpace(searchTerm))
       {
-        artists = db.Artists.Where(a => a.FirstName.Contains(searchTerm) || a.Band.Name.Contains(searchTerm)); 
+        artists = db.Artists.Where(a => a.FirstName.Contains(searchTerm) || a.Band.Name.Contains(searchTerm)).ToList();
       }
       return View(artists.ToList());
+    }
+
+    public ActionResult IndexPartial()
+    {
+      return PartialView("_ArtistIndex", artistsList);
+    }
+
+    public ActionResult IndexAjax(string searchTerm)
+    {
+      var tuple = new Tuple<List<Artist>, Artist>(artistsList, artistsList[0]);
+      return View("Artist", tuple);
+    }
+
+    [HttpPost]
+    public ActionResult OnSelectArtist(string artistId)
+    {
+      var tuple = new Tuple<List<Artist>, Artist>(artistsList, artistsList.Where(a => a.Id == Int32.Parse(artistId)).FirstOrDefault());
+      var selectedArtist = tuple.Item2;
+      var artist = artistsList.Where(a => a.Id == Int32.Parse(artistId)).FirstOrDefault();
+
+      return PartialView("_ArtistDetails", artist);
+    }
+
+    [HttpPost]
+    public ActionResult AjaxDetails(int id)
+    {
+      var artist = artistsList.Where(a => a.Id == id).FirstOrDefault();
+      return PartialView("_ArtistDetails", artist);
+    }
+
+    public ActionResult AjaxDetails(int? id)
+    {
+      var selectedArtist = artistsList.Where(a => a.Id == id).FirstOrDefault();
+      return PartialView("_ArtistDetails", selectedArtist);
     }
 
     // GET: Artists/Details/5

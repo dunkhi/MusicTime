@@ -1,0 +1,9 @@
+@model bool
+@if (Model == true)
+      {
+        @Html.Encode("Default")
+      }
+@if (Model == false)
+      {
+        @Html.Encode("Not Default")
+      }

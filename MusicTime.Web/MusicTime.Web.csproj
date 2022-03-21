@@ -137,10 +137,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\customer.png" />
+    <Content Include="Content\frog.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\CssMePlz.css" />
+    <Content Include="Content\CustomerEdit.css" />
+    <Content Include="Content\EditCustomerEmailPartial.css" />
+    <Content Include="Content\EditPostalAddress.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -156,6 +162,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -170,7 +178,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Customer\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -191,8 +199,29 @@
     <Content Include="Views\Artists\Edit.cshtml" />
     <Content Include="Views\Artists\Index.cshtml" />
     <Content Include="Views\Shared\_MemberPartial.cshtml" />
-    <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\EditCustomerPartial.cshtml" />
+    <Content Include="Views\Customer\AddressTypePartial.cshtml" />
+    <Content Include="Views\Customer\CreateEmailAddressPartial.cshtml" />
+    <Content Include="Views\Customer\CreatePostalAddressPartial.cshtml" />
+    <Content Include="Views\Customer\ShowCustomerEmailsPartial.cshtml" />
+    <Content Include="Views\Customer\EditCustomerEmailPartial.cshtml" />
+    <Content Include="Views\Customer\SetDefaultEmail.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\IsDefault.cshtml" />
+    <Content Include="Views\Customer\ViewPostalAddresses.cshtml" />
+    <Content Include="Views\Customer\EditPostalAddress.cshtml" />
+    <Content Include="Views\Band\CssMePlz.cshtml" />
+    <Content Include="Views\Customer\CreatePostalAddress.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_ArtistDetails.cshtml" />
+    <Content Include="Views\Artists\Artist.cshtml" />
+    <Content Include="Views\Artists\ArtistNoAjax.cshtml" />
+    <Content Include="Views\Shared\_ArtistIndex.cshtml" />
+    <Content Include="Views\Customer\CreateEmailAddress.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

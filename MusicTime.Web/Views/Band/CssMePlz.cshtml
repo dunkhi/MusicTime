@@ -1,0 +1,80 @@
+
+<head>
+  <link href="~/Content/CssMePlz.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <header id="mainHeader">
+    Customer Page
+  </header>
+  <div>
+    <aside id="leftMenu">
+      <img src="~/Content/customer.png" />
+    </aside>
+    <main id="main">
+      <h1>Customer Information</h1>
+      <form>
+        <fieldset>
+          <legend>Contact Information</legend>
+          <div class="row columns">
+            <div class="col-md-5">
+              <p>
+                <label for="firstName">First Name: </label>
+                <input id="firstName" type="text" name="customerFirstName" />
+              </p>
+              <p>
+                <label for="lastName">Last Name: </label>
+                <input id="lastName" type="text" name="customerLastName" />
+              </p>
+              <p>
+                <label for="userName">UserName: </label>
+                <input id="userName" type="text" name="customerUserName" /><br />
+              </p>
+              <p>
+                <label for="selectedCountry">Country: </label>
+                <select id="selectedCountry">
+                  <option value="Default Value">Default Value</option>
+                </select>
+              </p>
+            </div>
+            <div class="col-md-7">
+              <table>
+                <caption>Table Goes Here</caption>
+                <thead>Default Emails</thead>
+                <tr class="success">
+                  <th>
+                    Email
+                  </th>
+                  <th>
+                    Is Default
+                  </th>
+                  <th>
+                    Set Default
+                  </th>
+                </tr>
+                <tr>
+                  <td>
+                    dunkhi@gmail.com
+                  </td>
+                  <td>
+                    x
+                  </td>
+                  <td>
+                    Set Default?
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </fieldset>
+        <div class="row rowing">
+          <div class="col-md-4">Column 1</div>
+          <div class="col-md-4">Column 2</div>
+          <div class="col-md-4">Column 3</div>
+        </div>
+      </form>
+    </main>
+  </div>
+  
+
+</body>
+

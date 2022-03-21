@@ -20,6 +20,11 @@ namespace MusicTime.Web.Controllers
       _bandRepository = new BandRepository(new MusicTimeContext());
     }
 
+    public ActionResult CssMePlz()
+    {
+      return View();
+    }
+
     public ActionResult Index()
     {
       return View(_bandRepository.GetBands());

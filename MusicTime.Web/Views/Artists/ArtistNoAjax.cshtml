@@ -1,0 +1,35 @@
+@using MusicTime.Domain
+@model Tuple<List<Artist>, Artist>
+@{
+  Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<!DOCTYPE html>
+
+@using (Html.BeginForm("OnSelectArtist", "Artists"))
+{
+  @Html.AntiForgeryToken();
+  var selected = false;
+
+  foreach (var artist in Model.Item1)
+  {
+    if (Model.Item2 == artist)
+    {
+      selected = true;
+    }
+    else
+    {
+      selected = false;
+    }
+          @Html.RadioButton("artistId", artist.Id, selected)
+    @Html.Label(artist.FirstName)
+    <br />
+        }
+  <input type="submit" id="submitButton" value="Display Details" />
+}
+
+@*insert partial view. model is part 1, list of customers, part2 is selected customer *@
+
+<div id="artistInfo">
+  @Html.Partial("~/Views/Shared/_ArtistDetails.cshtml", Model.Item2)
+</div>

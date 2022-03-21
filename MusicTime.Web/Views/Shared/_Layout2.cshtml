@@ -1,0 +1,29 @@
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>@Page.Title</title>
+  @Styles.Render("~/Content/css")
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
+  <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+  <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+</head>
+<body>
+  <div class="container container-fluid">
+    @RenderPage("_Header.cshtml")
+    @RenderBody()
+  </div>
+  @Scripts.Render("~/bundles/jqueryunobstrusive")
+  @Scripts.Render("~/bundles/bootstrap")
+
+  @RenderSection("scripts", required: false)
+  <footer>Footer of _Layout2</footer>
+</body>
+
+</html>

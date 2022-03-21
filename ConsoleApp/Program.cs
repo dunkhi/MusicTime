@@ -15,7 +15,31 @@ namespace ConsoleApp
     static void Main(string[] args)
     {
       var _context = new MusicTimeContext();
-      GetCustomersWithRelated();
+      //GetCustomersWithRelated();
+      PrintCustomerPostalAddresses();
+    }
+
+    private static void PrintCustomerPostalAddresses()
+    {
+      var repo = new CustomerRepository(new MusicTimeContext());
+      var customer = repo.Find(6);
+      var cevm = repo.GetCustomer(6);
+      foreach (var address in cevm.PostalAddresses)
+      {
+        Console.WriteLine($"{address.Id}, {address.PostalCode}");
+      }
+      //using (var context = new MusicTimeContext())
+      //{
+      //  context.PostalAddresses.Add(new PostalAddress
+      //  {
+      //    CustomerID = 6,
+      //    Id = 4,
+      //    StreetAddress1 = "9310 la colonia",
+      //    City = "Fountain Valley",
+      //    IsDefault = false
+      //  });
+      //  context.SaveChanges();
+      //}
     }
 
     private static void GetCustomersWithRelated()
@@ -24,7 +48,7 @@ namespace ConsoleApp
       var customers = repo.GetCustomers();
       foreach (var customer in customers)
       {
-        Console.WriteLine($"{customer.Country.CountryNameEnglish}");
+        Console.WriteLine($"{customer.CountryName}");
       }
     }
 
@@ -93,7 +117,7 @@ namespace ConsoleApp
         foreach (var band in bands)
         {
           context.Bands.Add(band);
-          
+
         }
         context.SaveChanges();
       }

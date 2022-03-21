@@ -1,0 +1,76 @@
+@model MusicTime.Domain.View_Models.CustomerEditViewModel
+
+@{
+  ViewBag.Title = "EditPostalAddresses";
+  var count = 0;
+}
+<h2>@Model.FirstName @Model.LastName Postal Addresses</h2>
+
+@foreach (var address in Model.PostalAddresses)
+{
+  count++;
+  
+<table class="table table-bordered table-condensed">
+  <tr>
+    Postal Address @count
+  </tr>
+  <tr>
+    <th class="success col-sm-1">
+      @Html.LabelFor(e => address.Iso3)
+    </th>
+    <th class="col-sm-1">
+      @Html.LabelFor(e => address.RegionCode)
+    </th>
+    <th class="col-sm-2">
+      @Html.LabelFor(e => address.City)
+    </th>
+    <th class="col-sm-2">
+      @Html.LabelFor(e => address.StreetAddress1)
+    </th>
+    <th class="col-sm-1">
+      @Html.LabelFor(e => address.PostalCode)
+    </th>
+    <th class="col-sm-1">
+      @Html.LabelFor(e => address.IsDefault)
+    </th>
+    <th class="col-sm-2">
+      Set Default?
+    </th>
+    <th class="col-sm-1">
+      Edit
+    </th>
+  </tr>
+  <tr>
+    <td>
+      @Html.DisplayFor(p => address.Iso3)
+    </td>
+    <td>
+      @Html.DisplayFor(p => address.RegionCode)
+    </td>
+    <td>
+      @Html.DisplayFor(p => address.City)
+    </td>
+    <td>
+      @Html.DisplayFor(p => address.StreetAddress1)
+    </td>
+    <td>
+      @Html.DisplayFor(p => address.PostalCode)
+    </td>
+    <td>
+      @Html.DisplayFor(p => address.IsDefault)
+    </td>
+    <td>
+      @Html.ActionLink("Set to Default?", "SetDefaultPostal", "Customer", new { id = address.Id, customerId = address.CustomerID }, null)
+    </td>
+    <td>
+      @Html.ActionLink("Edit", "EditPostalAddress", "Customer", new { id = address.Id, customerId = address.CustomerID}, null)
+    </td>
+  </tr>
+</table>
+  
+}
+
+<p>
+  @Html.ActionLink("Back to Customer", "EditCustomerEmailPartial", new { id = Model.Id })
+</p>
+

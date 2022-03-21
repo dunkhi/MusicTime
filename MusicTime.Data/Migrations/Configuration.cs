@@ -16,7 +16,7 @@ namespace MusicTime.Data.Migrations
     }
 
     protected override void Seed(MusicTime.Data.MusicTimeContext context)
-    {
+    { 
       var countries = new List<Country>
       {
         new Country {
@@ -489,7 +489,7 @@ namespace MusicTime.Data.Migrations
       bands.ForEach(b => context.Bands.AddOrUpdate(p => p.id));
       context.SaveChanges();
 
-      
+
       var artists = new List<Artist>
       {
         new Artist
@@ -661,10 +661,20 @@ namespace MusicTime.Data.Migrations
         new Customer
         {
           Id = 1,
-        FirstName = "Greg",
-        LastName = "Olsen",
-        Email = "golsen@gmail.com",
-        UserName = "golsen"
+          FirstName = "Greg",
+          LastName = "Olsen",
+          UserName = "golsen",
+          CountryIso3 = "CAN",
+          RegionCode = "AB"
+        },
+        new Customer
+        {
+          Id = 2,
+          FirstName = "Jason",
+          LastName = "Bourne",
+          UserName = ">007",
+          CountryIso3 = "USA",
+          RegionCode = "CA"
         }
       };
       customers.ForEach(c => context.Customers.AddOrUpdate(p => p.Id));
@@ -694,7 +704,91 @@ namespace MusicTime.Data.Migrations
       };
       ticketOrders.ForEach(to => context.TicketOrders.AddOrUpdate(p => p.Id));
       context.SaveChanges();
-      
+
+      var addressTypes = new List<AddressType>()
+      {
+        new AddressType
+        {
+          Id = 1,
+          Addresstype = "Email"
+        },
+        new AddressType
+        {
+          Id = 2,
+          Addresstype = "Postal"
+        }
+      };
+      addressTypes.ForEach(a => context.AddressTypes.AddOrUpdate(p => p.Id));
+      context.SaveChanges();
+
+      var emailAddresses = new List<EmailAddress>()
+      {
+        new EmailAddress
+        {
+          Id = 1,
+          CustomerId = 1,
+          Email = "golsen@gmail.com",
+          IsDefault = true
+        },
+        new EmailAddress
+        {
+          Id = 2,
+          CustomerId = 2,
+          Email = "jbourne@aol.com",
+          IsDefault = true
+        }
+      };
+      emailAddresses.ForEach(e => context.EmailAddresses.AddOrUpdate(p => p.Id));
+      context.SaveChanges();
+
+      var postalAddresses = new List<PostalAddress>()
+      {
+        new PostalAddress
+        {
+          Id = 2,
+          CustomerID = 1,
+          City = "Irvine",
+          StreetAddress1 = "2345 Von Karmen",
+          Iso3 = "USA",
+          RegionCode = "CA",
+          IsDefault = true
+        },
+        new PostalAddress
+        {
+          Id = 2,
+          CustomerID = 6,
+          City = "Fullerton",
+          StreetAddress1 = "8995 State Drive",
+          Iso3 = "USA",
+          RegionCode = "CA",
+          IsDefault = true
+        }
+      };
+      postalAddresses.ForEach(e => context.PostalAddresses.AddOrUpdate(p => p.Id));
+      context.PostalAddresses.AddOrUpdate(
+        p => p.Id,
+        new PostalAddress
+        {
+          Id = 2,
+          CustomerID = 7,
+          City = "Irvine",
+          StreetAddress1 = "2345 Von Karmen",
+          Iso3 = "USA",
+          RegionCode = "CA",
+          IsDefault = true
+        },
+        new PostalAddress
+        {
+          Id = 3,
+          CustomerID = 6,
+          City = "Fullerton",
+          StreetAddress1 = "8995 State Drive",
+          Iso3 = "USA",
+          RegionCode = "CA",
+          IsDefault = true
+        }
+        );
+      context.SaveChanges();
     }
   }
 }

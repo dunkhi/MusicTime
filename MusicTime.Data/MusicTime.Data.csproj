@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressRepository.cs" />
     <Compile Include="BandRepository.cs" />
     <Compile Include="CountriesRepository.cs" />
     <Compile Include="CustomerRepository.cs" />
@@ -106,9 +107,60 @@
     <Compile Include="Migrations\202201261746591_CustomerEditViewModel.Designer.cs">
       <DependentUpon>202201261746591_CustomerEditViewModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201281938117_changebackcevm.cs" />
+    <Compile Include="Migrations\202201281938117_changebackcevm.Designer.cs">
+      <DependentUpon>202201281938117_changebackcevm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201312151072_removeCustomEditViewModel.cs" />
+    <Compile Include="Migrations\202201312151072_removeCustomEditViewModel.Designer.cs">
+      <DependentUpon>202201312151072_removeCustomEditViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201312152296_customerid.cs" />
+    <Compile Include="Migrations\202201312152296_customerid.Designer.cs">
+      <DependentUpon>202201312152296_customerid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202010041569_CEVMadditionalfields.cs" />
+    <Compile Include="Migrations\202202010041569_CEVMadditionalfields.Designer.cs">
+      <DependentUpon>202202010041569_CEVMadditionalfields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202011838240_BlipAjax-Tables.cs" />
+    <Compile Include="Migrations\202202011838240_BlipAjax-Tables.Designer.cs" />
+    <Compile Include="Migrations\202202012101087_EmptyMigration.cs" />
+    <Compile Include="Migrations\202202012101087_EmptyMigration.Designer.cs">
+      <DependentUpon>202202012101087_EmptyMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202041851195_EmailToCustomerTable.cs" />
+    <Compile Include="Migrations\202202041851195_EmailToCustomerTable.Designer.cs">
+      <DependentUpon>202202041851195_EmailToCustomerTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202072122257_AddressTypeChange.cs" />
+    <Compile Include="Migrations\202202072122257_AddressTypeChange.Designer.cs">
+      <DependentUpon>202202072122257_AddressTypeChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202072233035_EmailPostalAddressIds.cs" />
+    <Compile Include="Migrations\202202072233035_EmailPostalAddressIds.Designer.cs">
+      <DependentUpon>202202072233035_EmailPostalAddressIds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202072305283_EmailPostalAddressIds2.cs" />
+    <Compile Include="Migrations\202202072305283_EmailPostalAddressIds2.Designer.cs">
+      <DependentUpon>202202072305283_EmailPostalAddressIds2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202081751385_IDK.cs" />
+    <Compile Include="Migrations\202202081751385_IDK.Designer.cs">
+      <DependentUpon>202202081751385_IDK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202152059035_PostalDefault.cs" />
+    <Compile Include="Migrations\202202152059035_PostalDefault.Designer.cs">
+      <DependentUpon>202202152059035_PostalDefault.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202152239482_SomethingNotDropped.cs" />
+    <Compile Include="Migrations\202202152239482_SomethingNotDropped.Designer.cs">
+      <DependentUpon>202202152239482_SomethingNotDropped.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MusicTimeContext.cs" />
     <Compile Include="MusicTimeDatabaseSeeder.cs" />
+    <Compile Include="ParsContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegionsRepository.cs" />
   </ItemGroup>
@@ -146,6 +198,43 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201261746591_CustomerEditViewModel.resx">
       <DependentUpon>202201261746591_CustomerEditViewModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201281938117_changebackcevm.resx">
+      <DependentUpon>202201281938117_changebackcevm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201312151072_removeCustomEditViewModel.resx">
+      <DependentUpon>202201312151072_removeCustomEditViewModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201312152296_customerid.resx">
+      <DependentUpon>202201312152296_customerid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202010041569_CEVMadditionalfields.resx">
+      <DependentUpon>202202010041569_CEVMadditionalfields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202011838240_BlipAjax-Tables.resx" />
+    <EmbeddedResource Include="Migrations\202202012101087_EmptyMigration.resx">
+      <DependentUpon>202202012101087_EmptyMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202041851195_EmailToCustomerTable.resx">
+      <DependentUpon>202202041851195_EmailToCustomerTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202072122257_AddressTypeChange.resx">
+      <DependentUpon>202202072122257_AddressTypeChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202072233035_EmailPostalAddressIds.resx">
+      <DependentUpon>202202072233035_EmailPostalAddressIds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202072305283_EmailPostalAddressIds2.resx">
+      <DependentUpon>202202072305283_EmailPostalAddressIds2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202081751385_IDK.resx">
+      <DependentUpon>202202081751385_IDK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202152059035_PostalDefault.resx">
+      <DependentUpon>202202152059035_PostalDefault.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202152239482_SomethingNotDropped.resx">
+      <DependentUpon>202202152239482_SomethingNotDropped.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

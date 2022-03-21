@@ -29,6 +29,9 @@ namespace MusicTime.Web
       bundles.Add(new ScriptBundle("~/bundles/App")
                 .Include("~/Scripts/App/GetRegions.js")
                 .Include("~/Scripts/App/HomeScript.js"));
+
+      bundles.Add(new ScriptBundle("~/bundles/jqueryunobstrusive").Include(
+                                    "~/Scripts/jquery.unobstrusive-ajax.js"));
     }
   }
 }
