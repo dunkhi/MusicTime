@@ -63,7 +63,6 @@ namespace MusicTime.Data
       {
         var postalAddress = _context.PostalAddresses.Where(c => c.Id == model.PostalAddressID).FirstOrDefault();
         postalAddress.StreetAddress1 = model.StreetAddress1;
-        postalAddress.StreetAddress2 = model.StreetAddress2;
         postalAddress.City = model.City;
         postalAddress.PostalCode = model.PostalCode;
         postalAddress.Iso3 = model.SelectedCountryIso3;
@@ -77,16 +76,15 @@ namespace MusicTime.Data
 
     public bool SavePostalAddress(PostalAddressEditViewModel model)
     {
-      var postalCount = _context.PostalAddresses.Where(c => c.CustomerID == model.CustomerID).Count();
+      var postalCount = _context.PostalAddresses.Where(c => c.CustomerId == model.CustomerID).Count();
       if (model != null)
       {
         var customer = _context.Customers.Where(c => c.Id == model.CustomerID);
         var postalAddress = new PostalAddress()
         {
-          CustomerID = model.CustomerID,
+          CustomerId = model.CustomerID,
           Iso3 = model.SelectedCountryIso3,
           StreetAddress1 = model.StreetAddress1,
-          StreetAddress2 = model.StreetAddress2,
           PostalCode = model.PostalCode,
           RegionCode = model.SelectedRegionCode,
           City = model.City
@@ -140,7 +138,7 @@ namespace MusicTime.Data
     public bool SetDefaultPostal(int? id, int? customerId)
     {
       var postalAddress = _context.PostalAddresses.Where(p => p.Id == id).FirstOrDefault();
-      var postalAddressList = _context.PostalAddresses.Where(p => p.CustomerID == customerId).ToList();
+      var postalAddressList = _context.PostalAddresses.Where(p => p.CustomerId == customerId).ToList();
 
       foreach (var postal in postalAddressList)
       {
@@ -217,7 +215,7 @@ namespace MusicTime.Data
     public PostalAddress GetDefaultPostalAddress(int? id)
     {
       var customer = _context.Customers.Where(c => c.Id == id);
-      var defaultPostal = _context.PostalAddresses.Where(p => p.CustomerID == id && p.IsDefault == true)
+      var defaultPostal = _context.PostalAddresses.Where(p => p.CustomerId == id && p.IsDefault == true)
                                            .FirstOrDefault();
       return defaultPostal;
     }
@@ -229,10 +227,9 @@ namespace MusicTime.Data
       var postalEVM = new PostalAddressEditViewModel()
       {
         PostalAddressID = postal.Id,
-        CustomerID = postal.CustomerID,
+        CustomerID = postal.CustomerId,
         City = postal.City,
         StreetAddress1 = postal.StreetAddress1,
-        StreetAddress2 = postal.StreetAddress2,
         PostalCode = postal.PostalCode,
         SelectedCountryIso3 = postal.Iso3,
         SelectedRegionCode = postal.RegionCode,

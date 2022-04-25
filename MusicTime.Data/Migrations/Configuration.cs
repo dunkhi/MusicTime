@@ -16,7 +16,7 @@ namespace MusicTime.Data.Migrations
     }
 
     protected override void Seed(MusicTime.Data.MusicTimeContext context)
-    { 
+    {
       var countries = new List<Country>
       {
         new Country {
@@ -624,7 +624,7 @@ namespace MusicTime.Data.Migrations
         {
           Id = 1,
         Name = "It's Maroony for you",
-        Date = new DateTime(2022, 12, 2),
+        ConcertDate = new DateTime(2022, 12, 2),
         BandId = 2,
         VenueId = 1
         },
@@ -632,7 +632,7 @@ namespace MusicTime.Data.Migrations
         {
           Id = 2,
         Name = "Metal Time For Me",
-        Date = new DateTime(2022, 4, 21),
+        ConcertDate = new DateTime(2022, 4, 21),
         BandId = 1,
         VenueId = 3
         }
@@ -644,13 +644,11 @@ namespace MusicTime.Data.Migrations
       {
         new Ticket
         {
-          Id = 1,
+        Id = 1,
         ConcertId = 1,
-        Area = "Floor Seating",
-        Price = 50.00M,
+        Price = 50,
         Seat = "234A",
-        PurchaseDate = new DateTime(2022, 01, 03),
-        SerialNumber = "23414"
+        Area = "Floor"
         }
       };
       tickets.ForEach(t => context.Tickets.AddOrUpdate(p => p.Id));
@@ -685,25 +683,21 @@ namespace MusicTime.Data.Migrations
         new CustomerOrder
         {
           Id = 1,
-        CustomerId = 1,
-        OrderDate = new DateTime(2022, 03, 20),
-        FinalPrice = 50.00M
+          CustomerId = 1,
+          OrderDate = new DateTime(02,03,24),
+          TotalPrice = 50
+        },
+        new CustomerOrder
+        {
+          Id = 2,
+          CustomerId = 2,
+          OrderDate = new DateTime(03, 02, 11),
+          TotalPrice = 15
         }
       };
       customerOrders.ForEach(co => context.CustomerOrders.AddOrUpdate(p => p.CustomerId));
       context.SaveChanges();
 
-      var ticketOrders = new List<TicketOrder>()
-      {
-        new TicketOrder
-        {
-          CustomerOrderId = 1,
-        Id = 1,
-        TicketId = 1
-        }
-      };
-      ticketOrders.ForEach(to => context.TicketOrders.AddOrUpdate(p => p.Id));
-      context.SaveChanges();
 
       var addressTypes = new List<AddressType>()
       {
@@ -746,7 +740,7 @@ namespace MusicTime.Data.Migrations
         new PostalAddress
         {
           Id = 2,
-          CustomerID = 1,
+          CustomerId = 1,
           City = "Irvine",
           StreetAddress1 = "2345 Von Karmen",
           Iso3 = "USA",
@@ -756,23 +750,9 @@ namespace MusicTime.Data.Migrations
         new PostalAddress
         {
           Id = 2,
-          CustomerID = 6,
+          CustomerId = 2,
           City = "Fullerton",
           StreetAddress1 = "8995 State Drive",
-          Iso3 = "USA",
-          RegionCode = "CA",
-          IsDefault = true
-        }
-      };
-      postalAddresses.ForEach(e => context.PostalAddresses.AddOrUpdate(p => p.Id));
-      context.PostalAddresses.AddOrUpdate(
-        p => p.Id,
-        new PostalAddress
-        {
-          Id = 2,
-          CustomerID = 7,
-          City = "Irvine",
-          StreetAddress1 = "2345 Von Karmen",
           Iso3 = "USA",
           RegionCode = "CA",
           IsDefault = true
@@ -780,14 +760,21 @@ namespace MusicTime.Data.Migrations
         new PostalAddress
         {
           Id = 3,
-          CustomerID = 6,
-          City = "Fullerton",
-          StreetAddress1 = "8995 State Drive",
+          VenueId = 1,
           Iso3 = "USA",
-          RegionCode = "CA",
-          IsDefault = true
+          RegionCode = "NY",
+          City = "New York"
+        },
+        new PostalAddress
+        {
+          Id = 4,
+          VenueId = 2,
+          Iso3 = "USA",
+          RegionCode ="CA",
+          City = "Anaheim"
         }
-        );
+      };
+      postalAddresses.ForEach(c => context.Concerts.AddOrUpdate(p => p.Id));
       context.SaveChanges();
     }
   }

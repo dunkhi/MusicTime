@@ -21,6 +21,9 @@ namespace MusicTime.Domain
     [StringLength(60)]
     [Display(Name = "Last Name")]
     public string LastName { get; set; }
+
+    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+    public string FullName { get; set; }
     public Instrument Instrument { get; set; }
     public int Age { get; set; }
 

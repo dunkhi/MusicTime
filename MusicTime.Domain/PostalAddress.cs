@@ -11,9 +11,9 @@ namespace MusicTime.Domain
   {
     [Key]
     public int Id { get; set; }
-
-    public int? CustomerID { get; set; }
-    public bool IsDefault { get; set; }
+    public int? CustomerId { get; set; }
+    public int? VenueId { get; set; }
+    public bool? IsDefault { get; set; }
 
     [MaxLength(3)]
     [Display(Name = "Country")]
@@ -22,10 +22,6 @@ namespace MusicTime.Domain
     [MaxLength(100)]
     [Display(Name = "Street 1")]
     public string StreetAddress1 { get; set; }
-
-    [MaxLength(100)]
-    [Display(Name = "Street 2")]
-    public string StreetAddress2 { get; set; }
 
     [MaxLength(50)]
     public string City { get; set; }
@@ -39,6 +35,7 @@ namespace MusicTime.Domain
     public string PostalCode { get; set; }
 
     public virtual Customer Customer { get; set; }
+    public virtual Venue Venue { get; set; }
 
     public virtual Country Country { get; set; }
 

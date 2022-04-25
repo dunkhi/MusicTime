@@ -20,6 +20,23 @@ namespace MusicTime.Web.Controllers
     {
       artistsList = db.Artists.Include(a => a.Band).ToList();
     }
+
+    public ActionResult IndexAjax()
+    {
+      var tuple = new Tuple<List<Artist>, Artist>(artistsList, artistsList[0]);
+      return View("Artist", tuple);
+    }
+
+    [HttpPost]
+    public ActionResult OnSelectArtist(string artistId)
+    {
+      var tuple = new Tuple<List<Artist>, Artist>(artistsList, artistsList.Where(a => a.Id == Int32.Parse(artistId)).FirstOrDefault());
+      var selectedArtist = tuple.Item2;
+      var artist = artistsList.Where(a => a.Id == Int32.Parse(artistId)).FirstOrDefault();
+
+      return PartialView("_ArtistDetails", artist);
+    }
+
     // GET: Artists
     public ActionResult Index(string searchTerm, string Instruments)
     {
@@ -37,21 +54,7 @@ namespace MusicTime.Web.Controllers
       return PartialView("_ArtistIndex", artistsList);
     }
 
-    public ActionResult IndexAjax(string searchTerm)
-    {
-      var tuple = new Tuple<List<Artist>, Artist>(artistsList, artistsList[0]);
-      return View("Artist", tuple);
-    }
-
-    [HttpPost]
-    public ActionResult OnSelectArtist(string artistId)
-    {
-      var tuple = new Tuple<List<Artist>, Artist>(artistsList, artistsList.Where(a => a.Id == Int32.Parse(artistId)).FirstOrDefault());
-      var selectedArtist = tuple.Item2;
-      var artist = artistsList.Where(a => a.Id == Int32.Parse(artistId)).FirstOrDefault();
-
-      return PartialView("_ArtistDetails", artist);
-    }
+    
 
     [HttpPost]
     public ActionResult AjaxDetails(int id)

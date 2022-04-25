@@ -15,8 +15,487 @@ namespace ConsoleApp
     static void Main(string[] args)
     {
       var _context = new MusicTimeContext();
-      //GetCustomersWithRelated();
-      PrintCustomerPostalAddresses();
+      var artist = _context.Artists.Where(a => a.Id == 1).First();
+      Console.WriteLine($"Artist Name before update {artist.FullName}");
+      artist.FirstName = "Herman";
+      artist.LastName = "Giambi";
+      _context.SaveChanges();
+      Console.WriteLine($"Artist Name after changing {artist.FullName}");
+    }
+
+    private static void InsertCountriesRegions()
+    {
+      var context = new MusicTimeContext();
+      //var countries = new List<Country>
+      //{
+      //  new Country {
+      //              Iso3 = "USA",
+      //              CountryNameEnglish = "United States of America"
+      //          },
+      //          new Country
+      //          {
+      //              Iso3 = "CAN",
+      //              CountryNameEnglish = "Canada"
+      //          },
+      //          new Country
+      //          {
+      //              Iso3 = "FRA",
+      //              CountryNameEnglish = "France"
+      //          }
+      //};
+      //foreach (var c in countries)
+      //{
+      //  context.Countries.Add(c);
+      //}
+      //context.SaveChanges();
+
+      var regions = new List<Region>
+            {
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "AL",
+                    RegionNameEnglish = "Alabama"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "AK",
+                    RegionNameEnglish = "Alaska"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "AZ",
+                    RegionNameEnglish = "Arizona"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "AR",
+                    RegionNameEnglish = "Arkansas"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "CA",
+                    RegionNameEnglish = "California"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "CO",
+                    RegionNameEnglish = "Colorado"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "CT",
+                    RegionNameEnglish = "Connecticut"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "DC",
+                    RegionNameEnglish = "District of Columbia"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "DE",
+                    RegionNameEnglish = "Delaware"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "FL",
+                    RegionNameEnglish = "Florida"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "GA",
+                    RegionNameEnglish = "Georgia"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "HI",
+                    RegionNameEnglish = "Hawaii"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "IA",
+                    RegionNameEnglish = "Iowa"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "ID",
+                    RegionNameEnglish = "Idaho"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "IL",
+                    RegionNameEnglish = "Illinois"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "IN",
+                    RegionNameEnglish = "Indiana"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "KS",
+                    RegionNameEnglish = "Kansas"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "KY",
+                    RegionNameEnglish = "Kentucky"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "LA",
+                    RegionNameEnglish = "Louisiana"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "MD",
+                    RegionNameEnglish = "Maryland"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "ME",
+                    RegionNameEnglish = "Maine"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "MA",
+                    RegionNameEnglish = "Massachsetts"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "MI",
+                    RegionNameEnglish = "Michigan"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "MN",
+                    RegionNameEnglish = "Minnesota"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "MS",
+                    RegionNameEnglish = "Mississippi"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "MO",
+                    RegionNameEnglish = "Missouri"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "MT",
+                    RegionNameEnglish = "Montana"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "NE",
+                    RegionNameEnglish = "Nebraska"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "NV",
+                    RegionNameEnglish = "Nevada"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "NH",
+                    RegionNameEnglish = "New Hampshire"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "NJ",
+                    RegionNameEnglish = "New Jersey"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "NM",
+                    RegionNameEnglish = "New Mexico"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "NY",
+                    RegionNameEnglish = "New York"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "NC",
+                    RegionNameEnglish = "North Carolina"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "ND",
+                    RegionNameEnglish = "North Dakota"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "OH",
+                    RegionNameEnglish = "Ohio"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "OK",
+                    RegionNameEnglish = "Oklahoma"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "OR",
+                    RegionNameEnglish = "Oregon"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "PA",
+                    RegionNameEnglish = "Pennsylvania"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "RI",
+                    RegionNameEnglish = "Rhode Island"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "SC",
+                    RegionNameEnglish = "South Carolina"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "SD",
+                    RegionNameEnglish = "South Dakota"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "TN",
+                    RegionNameEnglish = "Tennessee"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "TX",
+                    RegionNameEnglish = "Texas"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "UT",
+                    RegionNameEnglish = "Utah"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "VT",
+                    RegionNameEnglish = "Vermont"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "VA",
+                    RegionNameEnglish = "Virginia"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "WA",
+                    RegionNameEnglish = "Washington"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "WV",
+                    RegionNameEnglish = "West Virginia"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "WI",
+                    RegionNameEnglish = "Wisconsin"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "WY",
+                    RegionNameEnglish = "Wyoming"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "AS",
+                    RegionNameEnglish = "American Samoa"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "FM",
+                    RegionNameEnglish = "Federated States of Micronesia"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "GU",
+                    RegionNameEnglish = "Guam"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "MH",
+                    RegionNameEnglish = "Marshall Islands"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "MP",
+                    RegionNameEnglish = "Northern Mariana Islands"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "PR",
+                    RegionNameEnglish = "Puerto Rico"
+                },
+                new Region
+                {
+                    Iso3 = "USA",
+                    RegionCode = "VI",
+                    RegionNameEnglish = "US Virgin Islands"
+                },
+                new Region
+                {
+                    Iso3 = "CAN",
+                    RegionCode = "AB",
+                    RegionNameEnglish = "Alberta"
+                },
+                new Region
+                {
+                    Iso3 = "CAN",
+                    RegionCode = "BC",
+                    RegionNameEnglish = "British Columbia"
+                },
+                new Region
+                {
+                    Iso3 = "CAN",
+                    RegionCode = "MB",
+                    RegionNameEnglish = "Manitoba"
+                },
+                new Region
+                {
+                    Iso3 = "CAN",
+                    RegionCode = "NB",
+                    RegionNameEnglish = "New Brunswick"
+                },
+                new Region
+                {
+                    Iso3 = "CAN",
+                    RegionCode = "NF",
+                    RegionNameEnglish = "Newfoundland"
+                },
+                new Region
+                {
+                    Iso3 = "CAN",
+                    RegionCode = "NT",
+                    RegionNameEnglish = "Northwest Territories"
+                },
+                new Region
+                {
+                    Iso3 = "CAN",
+                    RegionCode = "NS",
+                    RegionNameEnglish = "Nova Scotia"
+                },
+                new Region
+                {
+                    Iso3 = "CAN",
+                    RegionCode = "NU",
+                    RegionNameEnglish = "Nunavut"
+                },
+                new Region
+                {
+                    Iso3 = "CAN",
+                    RegionCode = "ON",
+                    RegionNameEnglish = "Ontario"
+                },
+                new Region
+                {
+                    Iso3 = "CAN",
+                    RegionCode = "PE",
+                    RegionNameEnglish = "Prince Edward Island"
+                },
+                new Region
+                {
+                    Iso3 = "CAN",
+                    RegionCode = "QC",
+                    RegionNameEnglish = "Québec"
+                },
+                new Region
+                {
+                    Iso3 = "CAN",
+                    RegionCode = "SK",
+                    RegionNameEnglish = "Saskatchewan"
+                },
+                new Region
+                {
+                    Iso3 = "CAN",
+                    RegionCode = "YT",
+                    RegionNameEnglish = "Yukon"
+                }
+            };
+      foreach (var r in regions)
+      {
+        context.Regions.Add(r);
+      }
+      context.SaveChanges();
+    }
+
+    private static void PrintRegions()
+    {
+      using (var ctx = new MusicTimeContext())
+      {
+        var list = ctx.Regions.ToList();
+        var bands = ctx.Bands.ToList();
+        foreach (var r in list)
+        {
+          Console.WriteLine($"{r.RegionNameEnglish}, {r.Iso3}");
+        }
+      }
     }
 
     private static void PrintCustomerPostalAddresses()
@@ -99,17 +578,12 @@ namespace ConsoleApp
       }
     }
 
-    private static void RetrieveDataWithStoredProecedure()
-    {
-      throw new NotImplementedException();
-    }
-
     private static void InsertBands()
     {
       var bands = new List<Band>()
       {
-        new Band { id = 13, Name = "DragonForce", BandBio ="DragonForce are a British power metal band from London, England. The band was formed in 1999 by guitarists Herman Li and Sam Totman, and are known for their long and fast guitar solos, fantasy-themed lyrics and retro video game-influenced sound.",Genre = GenreEnum.Metal },
-        new Band { id = 18, Name = "Maroon 5", BandBio = "Maroon 5 is an American pop rock band from Los Angeles, California. It currently consists of lead vocalist Adam Levine, keyboardist and rhythm guitarist Jesse Carmichael, lead guitarist James Valentine, drummer Matt Flynn, keyboardist PJ Morton and multi-instrumentalist and occasional bassist Sam Farrar.", Genre = GenreEnum.Pop}
+        new Band { id = 1, Name = "DragonForce", BandBio ="DragonForce are a British power metal band from London, England. ",Genre = GenreEnum.Metal },
+        new Band { id = 2, Name = "Maroon 5", BandBio = "Maroon 5 is an American pop rock band from Los Angeles", Genre = GenreEnum.Pop}
       };
 
       using (var context = new MusicTimeContext())

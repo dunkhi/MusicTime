@@ -17,6 +17,7 @@ namespace MusicTime.Domain
     [MaxLength(3)]
     public string Iso3 { get; set; }
 
+    [Display(Name = "State")]
     [Required]
     public string RegionNameEnglish { get; set; }
 

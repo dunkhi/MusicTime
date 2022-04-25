@@ -18,9 +18,12 @@ namespace MusicTime.Domain
     public string Name { get; set; }
     [Display(Name = "Band Biography")]
     public string BandBio { get; set; }
+    public virtual string Logo { get; set; }
+    public virtual string Photo { get; set; }
     [Required]
     public virtual GenreEnum Genre { get; set; }
     public virtual ICollection<Artist> Artists { get; set; }
+    public virtual ICollection<Album> Albums { get; set; }
     public virtual ICollection<Concert> Concerts { get; set; }
   }
 }

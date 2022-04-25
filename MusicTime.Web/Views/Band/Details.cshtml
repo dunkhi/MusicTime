@@ -7,8 +7,11 @@
 <link href="@Url.Content("~/Content/BandDetails.css")" rel="stylesheet" type="text/css" />
 <link href="~/Content/BandDetails.css" />
 <h1 style="">
-  @Html.DisplayFor(model => model.Name)
+  <img src="@Url.Content(Model.Logo)" style="width: 150px;"/>
 </h1>
+<div class="img-thumbnail center-block" style="width: 300px;">
+  <img src="@Url.Content(Model.Photo)" style="width: 300px;"/>
+</div>
 <div>
   <hr />
   <dl class="dl-horizontal">
@@ -27,6 +30,7 @@
     <dd>
       @Html.DisplayFor(model => model.Genre)
     </dd>
+    
     <dt class="lblLabel">
       @Html.DisplayNameFor(model => model.Artists)
     </dt>

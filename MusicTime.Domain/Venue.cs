@@ -14,7 +14,9 @@ namespace MusicTime.Domain
     public string City { get; set; }
     public string State { get; set; }
     public int Capacity { get; set; }
+    public virtual string Photo { get; set; }
     public VenueType Type { get; set; }
+    public virtual ICollection<PostalAddress> PostalAdddress { get; set; }
     public virtual ICollection<Concert> Concerts { get; set; }
   }
 }

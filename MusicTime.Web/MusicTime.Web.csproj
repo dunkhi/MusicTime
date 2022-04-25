@@ -129,8 +129,10 @@
     <Compile Include="Controllers\AlbumsController.cs" />
     <Compile Include="Controllers\ArtistsController.cs" />
     <Compile Include="Controllers\BandController.cs" />
+    <Compile Include="Controllers\ConcertsController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VenuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -147,6 +149,18 @@
     <Content Include="Content\CustomerEdit.css" />
     <Content Include="Content\EditCustomerEmailPartial.css" />
     <Content Include="Content\EditPostalAddress.css" />
+    <Content Include="Content\Photos\DragonForce-Concert.jpg" />
+    <Content Include="Content\Photos\Dragonforce-Logo.jpg" />
+    <Content Include="Content\Photos\DragonForce.jpg" />
+    <Content Include="Content\Photos\House_Of_Blues.jpg" />
+    <Content Include="Content\Photos\Lane8-Concert.jpg" />
+    <Content Include="Content\Photos\Lane8-Logo.jpg" />
+    <Content Include="Content\Photos\Lane8.jpg" />
+    <Content Include="Content\Photos\Madison_Square_Garden.jpg" />
+    <Content Include="Content\Photos\Maroon5-Concert.jpg" />
+    <Content Include="Content\Photos\Maroon5-Logo.jpg" />
+    <Content Include="Content\Photos\Maroon5.png" />
+    <Content Include="Content\Photos\Rose_Bowl.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -222,6 +236,16 @@
     <Content Include="Views\Artists\ArtistNoAjax.cshtml" />
     <Content Include="Views\Shared\_ArtistIndex.cshtml" />
     <Content Include="Views\Customer\CreateEmailAddress.cshtml" />
+    <Content Include="Views\Venues\Create.cshtml" />
+    <Content Include="Views\Venues\Delete.cshtml" />
+    <Content Include="Views\Venues\Details.cshtml" />
+    <Content Include="Views\Venues\Edit.cshtml" />
+    <Content Include="Views\Venues\Index.cshtml" />
+    <Content Include="Views\Concerts\Create.cshtml" />
+    <Content Include="Views\Concerts\Delete.cshtml" />
+    <Content Include="Views\Concerts\Details.cshtml" />
+    <Content Include="Views\Concerts\Edit.cshtml" />
+    <Content Include="Views\Concerts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

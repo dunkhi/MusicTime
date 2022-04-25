@@ -83,12 +83,14 @@
     <Compile Include="Enums\AddressTypeEnum.cs" />
     <Compile Include="Enums\GenreEnum.cs" />
     <Compile Include="Enums\Instrument.cs" />
+    <Compile Include="Enums\TicketTypeEnum.cs" />
     <Compile Include="Enums\VenueType.cs" />
+    <Compile Include="OrderDetails.cs" />
     <Compile Include="PostalAddress.cs" />
+    <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Region.cs" />
     <Compile Include="Ticket.cs" />
-    <Compile Include="TicketOrder.cs" />
     <Compile Include="Venue.cs" />
     <Compile Include="View Models\AddressTypeViewModel.cs" />
     <Compile Include="View Models\CustomerDisplayViewModel.cs" />
@@ -98,6 +100,8 @@
     <Compile Include="View Models\PostalAddressEditViewModel.cs" />
     <Compile Include="View Models\PostalAddressListViewModel.cs" />
     <Compile Include="View Models\PostalAddressViewModel.cs" />
+    <Compile Include="View Models\ProductTicketViewModel.cs" />
+    <Compile Include="View Models\VenueConcertViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

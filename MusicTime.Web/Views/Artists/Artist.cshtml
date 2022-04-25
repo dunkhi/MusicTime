@@ -17,24 +17,25 @@
   <div class="col-md-4">
     @using (Ajax.BeginForm("OnSelectArtist", "Artists", ajaxOptions, new { id = "artistForm" }))
     {
-  @Html.AntiForgeryToken();
-  var selected = false;
+      @Html.AntiForgeryToken();
+      var selected = false;
 
-  foreach (var artist in Model.Item1)
-  {
-    if (Model.Item2 == artist)
-    {
-      selected = true;
-    }
-    else
-    {
-      selected = false;
-    }
+      foreach (var artist in Model.Item1)
+      {
+        if (Model.Item2 == artist)
+        {
+          selected = true;
+        }
+        else
+        {
+          selected = false;
+        }
 
-  @Html.RadioButton("artistId", artist.Id, selected, new { onchange = "$('#artistForm').trigger('submit')" })
-            @Html.Label(artist.FirstName)
-                                <br />}
-                            }
+      @Html.RadioButton("artistId", artist.Id, selected, new { onchange = "$('#artistForm').trigger('submit')" })
+                @Html.Label(artist.FirstName) 
+                                    <br />
+      }
+   }
   </div>
   <button type="button" id="anotherButton"></button>
   <div class="col-md-8">
