@@ -11,9 +11,5 @@ namespace MusicTime.Data
   {
     public ApplicationDbContext _context = new ApplicationDbContext();
 
-    public List<IdentityRole> GetRoles(ApplicationRoleManager)
-    {
-
-    }
   }
 }

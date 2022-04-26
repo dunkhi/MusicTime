@@ -108,9 +108,9 @@
     <Compile Include="BandRepository.cs" />
     <Compile Include="CountriesRepository.cs" />
     <Compile Include="CustomerRepository.cs" />
-    <Compile Include="Migrations\202204261822116_InitialMigration.cs" />
-    <Compile Include="Migrations\202204261822116_InitialMigration.Designer.cs">
-      <DependentUpon>202204261822116_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202204261953003_InitialMigration.cs" />
+    <Compile Include="Migrations\202204261953003_InitialMigration.Designer.cs">
+      <DependentUpon>202204261953003_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,8 +130,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202204261822116_InitialMigration.resx">
-      <DependentUpon>202204261822116_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202204261953003_InitialMigration.resx">
+      <DependentUpon>202204261953003_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
