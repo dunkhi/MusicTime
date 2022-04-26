@@ -3,6 +3,8 @@ C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\bin\Debug\MusicTime.Domai
 C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\bin\Debug\MusicTime.Domain.pdb
 C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\bin\Debug\EntityFramework.dll
 C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\bin\Debug\System.Web.Helpers.dll
 C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\bin\Debug\System.Web.Mvc.dll
@@ -12,6 +14,8 @@ C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\bin\Debug\System.Web.WebP
 C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\bin\Debug\System.Web.WebPages.Razor.dll
 C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\bin\Debug\EntityFramework.xml
 C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\bin\Debug\System.Web.Helpers.xml
 C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\bin\Debug\System.Web.Mvc.xml
 C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\bin\Debug\System.Web.Razor.xml

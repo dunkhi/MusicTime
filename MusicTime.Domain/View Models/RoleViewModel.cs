@@ -9,11 +9,12 @@ namespace MusicTime.Domain.View_Models
 {
   public class RoleIndexViewModel
   {
-    public IdentityRole MyProperty { get; set; }
+    public IdentityRole Role { get; set; }
   }
 
   public class RoleDetailViewModel
   {
-
+    public IdentityRole Role { get; set; }
+    public IEnumerable<ApplicationUser> Users { get; set; }
   }
 }

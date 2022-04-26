@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MusicTime.Domain
 {
-  public class CustomerOrder2
+  public class CustomerOrder
   {
     public int Id { get; set; }
     public int CustomerId { get; set; }
@@ -16,7 +16,7 @@ namespace MusicTime.Domain
     public DateTime OrderDate { get; set; }
     [Display(Name = "Total Price")]
     public double TotalPrice { get; set; }
-    public virtual Customer Customer { get; set; }
+    public virtual ApplicationUser User { get; set; }
     public virtual ICollection<OrderDetails> OrderDetails { get; set; }
   }
 }

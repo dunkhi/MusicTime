@@ -13,7 +13,7 @@ namespace MusicTime.Domain
     public int CustomerOrderId { get; set; }
     public int Quantity { get; set; }
     public double UnitCost { get; set; }
-    public virtual CustomerOrder2 CustomerOrder { get; set; }
+    public virtual CustomerOrder CustomerOrder { get; set; }
     public virtual Product Product { get; set; }
   }
 }

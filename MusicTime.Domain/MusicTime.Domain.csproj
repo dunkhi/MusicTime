@@ -84,13 +84,14 @@
     <Compile Include="Concert.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="Customer.cs" />
-    <Compile Include="CustomerOrder2.cs" />
+    <Compile Include="CustomerOrder.cs" />
     <Compile Include="EmailAddress.cs" />
     <Compile Include="Enums\AddressTypeEnum.cs" />
     <Compile Include="Enums\GenreEnum.cs" />
     <Compile Include="Enums\Instrument.cs" />
     <Compile Include="Enums\TicketTypeEnum.cs" />
     <Compile Include="Enums\VenueType.cs" />
+    <Compile Include="IdentityModels.cs" />
     <Compile Include="OrderDetails.cs" />
     <Compile Include="PostalAddress.cs" />
     <Compile Include="Product.cs" />

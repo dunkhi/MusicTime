@@ -100,8 +100,6 @@ C:\Users\craig\source\repos\MusicTime\MusicTime.Web\bin\Newtonsoft.Json.xml
 C:\Users\craig\source\repos\MusicTime\MusicTime.Web\bin\Antlr3.Runtime.pdb
 C:\Users\craig\source\repos\MusicTime\MusicTime.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\craig\source\repos\MusicTime\MusicTime.Web\obj\Debug\MusicTime.Web.csproj.AssemblyReference.cache
-C:\Users\craig\source\repos\MusicTime\MusicTime.Web\obj\Debug\MusicTime.Web.Migrations.Initial.resources
-C:\Users\craig\source\repos\MusicTime\MusicTime.Web\obj\Debug\MusicTime.Web.csproj.GenerateResource.cache
 C:\Users\craig\source\repos\MusicTime\MusicTime.Web\obj\Debug\MusicTime.Web.csproj.CoreCompileInputs.cache
 C:\Users\craig\source\repos\MusicTime\MusicTime.Web\obj\Debug\MusicTime.Web.csproj.CopyComplete
 C:\Users\craig\source\repos\MusicTime\MusicTime.Web\obj\Debug\MusicTime.Web.dll

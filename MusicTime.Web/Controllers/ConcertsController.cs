@@ -13,11 +13,11 @@ namespace MusicTime.Web.Controllers
 {
   public class ConcertsController : Controller
   {
-    private MusicTimeContext db = new MusicTimeContext();
+    private ApplicationDbContext db = new ApplicationDbContext();
     private TicketRepository ticketRepository;
     public ConcertsController()
     {
-      ticketRepository = new TicketRepository(new MusicTimeContext());
+      ticketRepository = new TicketRepository(new ApplicationDbContext());
     }
     // GET: Concerts
     public ActionResult Index()

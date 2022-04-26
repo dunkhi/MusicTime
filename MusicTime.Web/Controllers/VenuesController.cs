@@ -13,14 +13,14 @@ namespace MusicTime.Web.Controllers
 {
   public class VenuesController : Controller
   {
-    private MusicTimeContext db = new MusicTimeContext();
+    private ApplicationDbContext db = new ApplicationDbContext();
     private List<Venue> venueList = new List<Venue>();
     private VenueRepository venueRepository;
 
     public VenuesController()
     {
       venueList = db.Venues.Include(v => v.Concerts).ToList();
-      venueRepository = new VenueRepository(new MusicTimeContext());
+      venueRepository = new VenueRepository(new ApplicationDbContext());
     }
 
     // GET: Venues

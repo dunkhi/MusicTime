@@ -2,6 +2,8 @@ using Microsoft.AspNet.Identity;
 
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using MusicTime.Data;
+using MusicTime.Domain;
 using MusicTime.Web.Models;
 using System;
 using System.Collections.Generic;
