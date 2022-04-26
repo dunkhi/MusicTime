@@ -40,6 +40,6 @@ namespace MusicTime.Domain
 
     public virtual ICollection<EmailAddress> EmailAddresses { get; set; }
     public virtual ICollection<PostalAddress> PostalAddresses { get; set; }
-    public virtual ICollection<CustomerOrder> CustomerOrders { get; set; }
+    public virtual ICollection<CustomerOrder2> CustomerOrders { get; set; }
   }
 }

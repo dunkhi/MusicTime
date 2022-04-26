@@ -51,7 +51,7 @@ namespace MusicTime.Data.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         FirstName = c.String(nullable: false, maxLength: 60),
                         LastName = c.String(nullable: false, maxLength: 60),
-                        //FullName = c.String(),
+                        FullName = c.String(),
                         Instrument = c.Int(nullable: false),
                         Age = c.Int(nullable: false),
                         ArtistBio = c.String(),
@@ -60,8 +60,8 @@ namespace MusicTime.Data.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Bands", t => t.BandId, cascadeDelete: true)
                 .Index(t => t.BandId);
-      Sql("ALTER TABLE dbo.Artists ADD FullName AS FirstName + ' ' + LastName");
-      CreateTable(
+            
+            CreateTable(
                 "dbo.Concerts",
                 c => new
                     {
@@ -119,13 +119,13 @@ namespace MusicTime.Data.Migrations
                         UnitCost = c.Double(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.CustomerOrders", t => t.CustomerOrderId, cascadeDelete: true)
+                .ForeignKey("dbo.CustomerOrder2", t => t.CustomerOrderId, cascadeDelete: true)
                 .ForeignKey("dbo.Products", t => t.ProductId, cascadeDelete: true)
                 .Index(t => t.ProductId)
                 .Index(t => t.CustomerOrderId);
             
             CreateTable(
-                "dbo.CustomerOrders",
+                "dbo.CustomerOrder2",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -144,7 +144,7 @@ namespace MusicTime.Data.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         FirstName = c.String(),
                         LastName = c.String(),
-                        //FullName = c.String(),
+                        FullName = c.String(),
                         UserName = c.String(),
                         CountryIso3 = c.String(maxLength: 3),
                         RegionCode = c.String(maxLength: 3),
@@ -154,8 +154,8 @@ namespace MusicTime.Data.Migrations
                 .ForeignKey("dbo.Regions", t => t.RegionCode)
                 .Index(t => t.CountryIso3)
                 .Index(t => t.RegionCode);
-      Sql("ALTER TABLE dbo.Customers ADD FullName AS FirstName + ' ' + LastName");
-      CreateTable(
+            
+            CreateTable(
                 "dbo.Countries",
                 c => new
                     {
@@ -233,7 +233,7 @@ namespace MusicTime.Data.Migrations
         {
             DropForeignKey("dbo.Tickets", "ProductId", "dbo.Products");
             DropForeignKey("dbo.OrderDetails", "ProductId", "dbo.Products");
-            DropForeignKey("dbo.OrderDetails", "CustomerOrderId", "dbo.CustomerOrders");
+            DropForeignKey("dbo.OrderDetails", "CustomerOrderId", "dbo.CustomerOrder2");
             DropForeignKey("dbo.Customers", "RegionCode", "dbo.Regions");
             DropForeignKey("dbo.PostalAddresses", "VenueId", "dbo.Venues");
             DropForeignKey("dbo.Concerts", "VenueId", "dbo.Venues");
@@ -242,7 +242,7 @@ namespace MusicTime.Data.Migrations
             DropForeignKey("dbo.PostalAddresses", "CustomerId", "dbo.Customers");
             DropForeignKey("dbo.PostalAddresses", "Iso3", "dbo.Countries");
             DropForeignKey("dbo.EmailAddresses", "CustomerId", "dbo.Customers");
-            DropForeignKey("dbo.CustomerOrders", "CustomerId", "dbo.Customers");
+            DropForeignKey("dbo.CustomerOrder2", "CustomerId", "dbo.Customers");
             DropForeignKey("dbo.Customers", "CountryIso3", "dbo.Countries");
             DropForeignKey("dbo.Tickets", "ConcertId", "dbo.Concerts");
             DropForeignKey("dbo.Concerts", "BandId", "dbo.Bands");
@@ -256,7 +256,7 @@ namespace MusicTime.Data.Migrations
             DropIndex("dbo.EmailAddresses", new[] { "CustomerId" });
             DropIndex("dbo.Customers", new[] { "RegionCode" });
             DropIndex("dbo.Customers", new[] { "CountryIso3" });
-            DropIndex("dbo.CustomerOrders", new[] { "CustomerId" });
+            DropIndex("dbo.CustomerOrder2", new[] { "CustomerId" });
             DropIndex("dbo.OrderDetails", new[] { "CustomerOrderId" });
             DropIndex("dbo.OrderDetails", new[] { "ProductId" });
             DropIndex("dbo.Tickets", new[] { "ProductId" });
@@ -271,7 +271,7 @@ namespace MusicTime.Data.Migrations
             DropTable("dbo.EmailAddresses");
             DropTable("dbo.Countries");
             DropTable("dbo.Customers");
-            DropTable("dbo.CustomerOrders");
+            DropTable("dbo.CustomerOrder2");
             DropTable("dbo.OrderDetails");
             DropTable("dbo.Products");
             DropTable("dbo.Tickets");

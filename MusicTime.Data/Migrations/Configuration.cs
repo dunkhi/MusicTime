@@ -678,16 +678,16 @@ namespace MusicTime.Data.Migrations
       customers.ForEach(c => context.Customers.AddOrUpdate(p => p.Id));
       context.SaveChanges();
 
-      var customerOrders = new List<CustomerOrder>()
+      var customerOrders = new List<CustomerOrder2>()
       {
-        new CustomerOrder
+        new CustomerOrder2
         {
           Id = 1,
           CustomerId = 1,
           OrderDate = new DateTime(02,03,24),
           TotalPrice = 50
         },
-        new CustomerOrder
+        new CustomerOrder2
         {
           Id = 2,
           CustomerId = 2,

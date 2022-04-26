@@ -75,9 +75,9 @@
     <Compile Include="BandRepository.cs" />
     <Compile Include="CountriesRepository.cs" />
     <Compile Include="CustomerRepository.cs" />
-    <Compile Include="Migrations\202204082011407_InitialMigration.cs" />
-    <Compile Include="Migrations\202204082011407_InitialMigration.Designer.cs">
-      <DependentUpon>202204082011407_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202204252123310_InitialMigration.cs" />
+    <Compile Include="Migrations\202204252123310_InitialMigration.Designer.cs">
+      <DependentUpon>202204252123310_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MusicTimeContext.cs" />
@@ -99,8 +99,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202204082011407_InitialMigration.resx">
-      <DependentUpon>202204082011407_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202204252123310_InitialMigration.resx">
+      <DependentUpon>202204252123310_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
