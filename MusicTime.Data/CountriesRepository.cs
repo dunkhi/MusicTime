@@ -9,8 +9,8 @@ namespace MusicTime.Data
 {
   public class CountriesRepository
   {
-    MusicTimeContext _context;
-    public CountriesRepository(MusicTimeContext context)
+    ApplicationDbContext _context;
+    public CountriesRepository(ApplicationDbContext context)
     {
       _context = context;
     }

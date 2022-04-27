@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -13,7 +13,7 @@ namespace MusicTime.Web.Controllers
 {
     public class AlbumsController : Controller
     {
-        private MusicTimeContext db = new MusicTimeContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Albums
         public ActionResult Index()

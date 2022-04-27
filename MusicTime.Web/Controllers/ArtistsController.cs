@@ -13,7 +13,7 @@ namespace MusicTime.Web.Controllers
 {
   public class ArtistsController : Controller
   {
-    private MusicTimeContext db = new MusicTimeContext();
+    private ApplicationDbContext db = new ApplicationDbContext();
     List<Artist> artistsList = new List<Artist>();
 
     public ArtistsController()

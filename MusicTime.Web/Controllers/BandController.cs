@@ -13,11 +13,11 @@ namespace MusicTime.Web.Controllers
   {
     // GET: Band
     private BandRepository _bandRepository;
-    private MusicTimeContext _context = new MusicTimeContext();
+    private ApplicationDbContext _context = new ApplicationDbContext();
 
     public BandController()
     {
-      _bandRepository = new BandRepository(new MusicTimeContext());
+      _bandRepository = new BandRepository(new ApplicationDbContext());
     }
 
     public ActionResult CssMePlz()

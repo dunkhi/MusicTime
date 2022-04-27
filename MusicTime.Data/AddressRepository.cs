@@ -13,15 +13,15 @@ namespace MusicTime.Data
 {
   public class AddressRepository
   {
-    MusicTimeContext _context;
+    ApplicationDbContext _context;
     private RegionsRepository _regionsRepository;
     private CountriesRepository _countriesRepository;
 
-    public AddressRepository(MusicTimeContext context)
+    public AddressRepository(ApplicationDbContext context)
     {
       _context = context;
-      _regionsRepository = new RegionsRepository(new MusicTimeContext());
-      _countriesRepository = new CountriesRepository(new MusicTimeContext());
+      _regionsRepository = new RegionsRepository(new ApplicationDbContext());
+      _countriesRepository = new CountriesRepository(new ApplicationDbContext());
     }
 
     public IEnumerable<SelectListItem> GetAddressTypes()

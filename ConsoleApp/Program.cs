@@ -11,10 +11,9 @@ namespace ConsoleApp
 {
   public class Program
   {
-    MusicTimeContext _context;
     static void Main(string[] args)
     {
-      var _context = new MusicTimeContext();
+      var _context = new ApplicationDbContext();
       var artist = _context.Artists.Where(a => a.Id == 1).First();
       Console.WriteLine($"Artist Name before update {artist.FullName}");
       artist.FirstName = "Herman";
@@ -25,7 +24,7 @@ namespace ConsoleApp
 
     private static void InsertCountriesRegions()
     {
-      var context = new MusicTimeContext();
+      var context = new ApplicationDbContext();
       //var countries = new List<Country>
       //{
       //  new Country {
@@ -487,7 +486,7 @@ namespace ConsoleApp
 
     private static void PrintRegions()
     {
-      using (var ctx = new MusicTimeContext())
+      using (var ctx = new ApplicationDbContext())
       {
         var list = ctx.Regions.ToList();
         var bands = ctx.Bands.ToList();
@@ -500,7 +499,7 @@ namespace ConsoleApp
 
     private static void PrintCustomerPostalAddresses()
     {
-      var repo = new CustomerRepository(new MusicTimeContext());
+      var repo = new CustomerRepository(new ApplicationDbContext());
       var customer = repo.Find(6);
       var cevm = repo.GetCustomer(6);
       foreach (var address in cevm.PostalAddresses)
@@ -523,7 +522,7 @@ namespace ConsoleApp
 
     private static void GetCustomersWithRelated()
     {
-      var repo = new CustomerRepository(new MusicTimeContext());
+      var repo = new CustomerRepository(new ApplicationDbContext());
       var customers = repo.GetCustomers();
       foreach (var customer in customers)
       {
@@ -533,7 +532,7 @@ namespace ConsoleApp
 
     private static void InsertAlbum()
     {
-      using (var context = new MusicTimeContext())
+      using (var context = new ApplicationDbContext())
       {
         context.Albums.Add(new Album
         {
@@ -568,7 +567,7 @@ namespace ConsoleApp
         new Artist { Id = 10, FirstName = "Sam", LastName = "Farrar", Age = 43, Instrument = Instrument.Bass, ArtistBio = "He is best known as a member of the pop rock band Maroon 5, in which he plays several instruments. A frequent collaborator with the band since the 1990s, he joined as a touring member in 2012 and was promoted to an official member in 2016.", BandId = 2 }
       };
 
-      using (var context = new MusicTimeContext())
+      using (var context = new ApplicationDbContext())
       {
         foreach (var artist in artists)
         {
@@ -586,7 +585,7 @@ namespace ConsoleApp
         new Band { id = 2, Name = "Maroon 5", BandBio = "Maroon 5 is an American pop rock band from Los Angeles", Genre = GenreEnum.Pop}
       };
 
-      using (var context = new MusicTimeContext())
+      using (var context = new ApplicationDbContext())
       {
         foreach (var band in bands)
         {

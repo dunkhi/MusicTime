@@ -10,8 +10,8 @@ namespace MusicTime.Data
 {
   public class VenueRepository
   {
-    private readonly MusicTimeContext _context;
-    public VenueRepository(MusicTimeContext context)
+    private readonly ApplicationDbContext _context;
+    public VenueRepository(ApplicationDbContext context)
     {
       _context = context;
     }

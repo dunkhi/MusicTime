@@ -16,13 +16,13 @@ namespace MusicTime.Web.Controllers
     private RegionsRepository _regionsRepository;
     private AddressRepository _addressRepository;
     private CountriesRepository _countriesRepository;
-    private MusicTimeContext _db = new MusicTimeContext();
+    private ApplicationDbContext _db = new ApplicationDbContext();
     public CustomerController()
     {
-      _customerRepository = new CustomerRepository(new MusicTimeContext());
-      _regionsRepository = new RegionsRepository(new MusicTimeContext());
-      _addressRepository = new AddressRepository(new MusicTimeContext());
-      _countriesRepository = new CountriesRepository(new MusicTimeContext());
+      _customerRepository = new CustomerRepository(new ApplicationDbContext());
+      _regionsRepository = new RegionsRepository(new ApplicationDbContext());
+      _addressRepository = new AddressRepository(new ApplicationDbContext());
+      _countriesRepository = new CountriesRepository(new ApplicationDbContext());
     }
     // GET: Customer
     public ActionResult Index()

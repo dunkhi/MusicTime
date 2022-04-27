@@ -9,8 +9,8 @@ namespace MusicTime.Data
 {
   public class TicketRepository
   {
-    private MusicTimeContext _context;
-    public TicketRepository(MusicTimeContext context)
+    private ApplicationDbContext _context;
+    public TicketRepository(ApplicationDbContext context)
     {
       _context = context;
     }

@@ -10,9 +10,9 @@ namespace MusicTime.Data
 {
   public class RegionsRepository
   {
-    MusicTimeContext _context;
+    ApplicationDbContext _context;
 
-    public RegionsRepository(MusicTimeContext context)
+    public RegionsRepository(ApplicationDbContext context)
     {
       _context = context;
     }

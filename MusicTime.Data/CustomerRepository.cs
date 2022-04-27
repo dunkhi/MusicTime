@@ -11,16 +11,16 @@ namespace MusicTime.Data
 {
   public class CustomerRepository
   {
-    MusicTimeContext _context;
+    ApplicationDbContext _context;
     private CountriesRepository cRepo;
     private RegionsRepository rRepo;
     private AddressRepository aRepo;
-    public CustomerRepository(MusicTimeContext context)
+    public CustomerRepository(ApplicationDbContext context)
     {
       _context = context;
-      cRepo = new CountriesRepository(new MusicTimeContext());
-      rRepo = new RegionsRepository(new MusicTimeContext());
-      aRepo = new AddressRepository(new MusicTimeContext());
+      cRepo = new CountriesRepository(new ApplicationDbContext());
+      rRepo = new RegionsRepository(new ApplicationDbContext());
+      aRepo = new AddressRepository(new ApplicationDbContext());
     }
 
     public List<CustomerDisplayViewModel> GetCustomers()
