@@ -109,6 +109,7 @@
     <Compile Include="View Models\PostalAddressViewModel.cs" />
     <Compile Include="View Models\ProductTicketViewModel.cs" />
     <Compile Include="View Models\RoleViewModel.cs" />
+    <Compile Include="View Models\UserViewModel.cs" />
     <Compile Include="View Models\VenueConcertViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

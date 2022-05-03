@@ -47,5 +47,7 @@ namespace MusicTime.Data
     {
       return new ApplicationDbContext();
     }
+
+    //public System.Data.Entity.DbSet<MusicTime.Domain.View_Models.UserEditViewModel> UserEditViewModels { get; set; }
   }
 }

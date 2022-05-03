@@ -34,7 +34,7 @@ namespace MusicTime.Domain
     [Display(Name = "Zip")]
     public string PostalCode { get; set; }
 
-    public virtual Customer Customer { get; set; }
+    public virtual ApplicationUser User { get; set; }
     public virtual Venue Venue { get; set; }
 
     public virtual Country Country { get; set; }

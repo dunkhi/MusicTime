@@ -13,7 +13,7 @@ namespace MusicTime.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202204261953003_InitialMigration"; }
+            get { return "202204271539157_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source

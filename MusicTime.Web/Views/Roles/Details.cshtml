@@ -1,0 +1,31 @@
+@model MusicTime.Domain.View_Models.RoleDetailViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RoleDetailViewModel</h4>
+    <hr />
+  @Model.Role.Name
+  <br/>
+  Users in Role
+  <table>
+    @foreach (var user in Model.Users)
+    {
+      <tr>
+        <td>
+          @user.FullName
+        </td>
+      </tr>
+    }
+  </table>
+  
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

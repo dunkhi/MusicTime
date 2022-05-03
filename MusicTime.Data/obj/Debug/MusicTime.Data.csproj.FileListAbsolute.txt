@@ -41,9 +41,9 @@ C:\Users\craig\source\repos\MusicTime\MusicTime.Data\bin\Debug\System.Web.WebPag
 C:\Users\craig\source\repos\MusicTime\MusicTime.Data\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\craig\source\repos\MusicTime\MusicTime.Data\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.csproj.AssemblyReference.cache
+C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.Migrations.InitialMigration.resources
+C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.csproj.GenerateResource.cache
 C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.csproj.CoreCompileInputs.cache
 C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.csproj.CopyComplete
 C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.dll
 C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.pdb
-C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.Migrations.InitialMigration.resources
-C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.csproj.GenerateResource.cache

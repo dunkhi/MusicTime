@@ -11,5 +11,23 @@ namespace MusicTime.Data
   {
     public ApplicationDbContext _context = new ApplicationDbContext();
 
+    public RoleRepository(ApplicationDbContext context)
+    {
+      _context = context;
+    }
+    public IEnumerable<IdentityRole> GetRoles()
+    {
+      var roles = _context.Roles.ToList();
+      return roles;
+    }
+
+    public async Task CreateRole(string name)
+    {
+      var roles = _context.Roles.ToList();
+      if(!roles.Any(r => r.Name == name))
+      {
+        _context.Roles.Add(new IdentityRole(name));
+      }
+    }
   }
 }

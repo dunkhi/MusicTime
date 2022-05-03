@@ -147,8 +147,8 @@ namespace MusicTime.Data.Migrations
             Id = c.String(nullable: false, maxLength: 128),
             FirstName = c.String(),
             LastName = c.String(),
-                  //FullName = c.String(),
-                  CountryIso3 = c.String(maxLength: 3),
+            //FullName = c.String(),
+            CountryIso3 = c.String(maxLength: 3),
             RegionCode = c.String(maxLength: 3),
             Address = c.String(),
             City = c.String(),
@@ -196,6 +196,22 @@ namespace MusicTime.Data.Migrations
           .PrimaryKey(t => t.Iso3);
 
       CreateTable(
+          "dbo.EmailAddresses",
+          c => new
+          {
+            Id = c.Int(nullable: false, identity: true),
+            Email = c.String(),
+            CustomerId = c.Int(),
+            IsDefault = c.Boolean(nullable: false),
+            User_Id = c.String(maxLength: 128),
+          })
+          .PrimaryKey(t => t.Id)
+          .ForeignKey("dbo.AspNetUsers", t => t.User_Id)
+          .ForeignKey("dbo.Customers", t => t.CustomerId)
+          .Index(t => t.CustomerId)
+          .Index(t => t.User_Id);
+
+      CreateTable(
           "dbo.AspNetUserLogins",
           c => new
           {
@@ -208,6 +224,33 @@ namespace MusicTime.Data.Migrations
           .Index(t => t.UserId);
 
       CreateTable(
+          "dbo.PostalAddresses",
+          c => new
+          {
+            Id = c.Int(nullable: false, identity: true),
+            CustomerId = c.Int(),
+            VenueId = c.Int(),
+            IsDefault = c.Boolean(),
+            Iso3 = c.String(maxLength: 3),
+            StreetAddress1 = c.String(maxLength: 100),
+            City = c.String(maxLength: 50),
+            RegionCode = c.String(maxLength: 3),
+            PostalCode = c.String(maxLength: 10),
+            User_Id = c.String(maxLength: 128),
+          })
+          .PrimaryKey(t => t.Id)
+          .ForeignKey("dbo.Countries", t => t.Iso3)
+          .ForeignKey("dbo.Regions", t => t.RegionCode)
+          .ForeignKey("dbo.AspNetUsers", t => t.User_Id)
+          .ForeignKey("dbo.Venues", t => t.VenueId)
+          .ForeignKey("dbo.Customers", t => t.CustomerId)
+          .Index(t => t.CustomerId)
+          .Index(t => t.VenueId)
+          .Index(t => t.Iso3)
+          .Index(t => t.RegionCode)
+          .Index(t => t.User_Id);
+
+      CreateTable(
           "dbo.Regions",
           c => new
           {
@@ -218,19 +261,6 @@ namespace MusicTime.Data.Migrations
           .PrimaryKey(t => t.RegionCode)
           .ForeignKey("dbo.Countries", t => t.Iso3, cascadeDelete: true)
           .Index(t => t.Iso3);
-
-      CreateTable(
-          "dbo.AspNetUserRoles",
-          c => new
-          {
-            UserId = c.String(nullable: false, maxLength: 128),
-            RoleId = c.String(nullable: false, maxLength: 128),
-          })
-          .PrimaryKey(t => new { t.UserId, t.RoleId })
-          .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
-          .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
-          .Index(t => t.UserId)
-          .Index(t => t.RoleId);
 
       CreateTable(
           "dbo.Venues",
@@ -247,28 +277,17 @@ namespace MusicTime.Data.Migrations
           .PrimaryKey(t => t.Id);
 
       CreateTable(
-          "dbo.PostalAddresses",
+          "dbo.AspNetUserRoles",
           c => new
           {
-            Id = c.Int(nullable: false, identity: true),
-            CustomerId = c.Int(),
-            VenueId = c.Int(),
-            IsDefault = c.Boolean(),
-            Iso3 = c.String(maxLength: 3),
-            StreetAddress1 = c.String(maxLength: 100),
-            City = c.String(maxLength: 50),
-            RegionCode = c.String(maxLength: 3),
-            PostalCode = c.String(maxLength: 10),
+            UserId = c.String(nullable: false, maxLength: 128),
+            RoleId = c.String(nullable: false, maxLength: 128),
           })
-          .PrimaryKey(t => t.Id)
-          .ForeignKey("dbo.Countries", t => t.Iso3)
-          .ForeignKey("dbo.Customers", t => t.CustomerId)
-          .ForeignKey("dbo.Regions", t => t.RegionCode)
-          .ForeignKey("dbo.Venues", t => t.VenueId)
-          .Index(t => t.CustomerId)
-          .Index(t => t.VenueId)
-          .Index(t => t.Iso3)
-          .Index(t => t.RegionCode);
+          .PrimaryKey(t => new { t.UserId, t.RoleId })
+          .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+          .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
+          .Index(t => t.UserId)
+          .Index(t => t.RoleId);
 
       CreateTable(
           "dbo.Customers",
@@ -289,24 +308,11 @@ namespace MusicTime.Data.Migrations
           .Index(t => t.RegionCode);
 
       CreateTable(
-          "dbo.EmailAddresses",
-          c => new
-          {
-            Id = c.Int(nullable: false, identity: true),
-            Email = c.String(),
-            CustomerId = c.Int(),
-            IsDefault = c.Boolean(nullable: false),
-          })
-          .PrimaryKey(t => t.Id)
-          .ForeignKey("dbo.Customers", t => t.CustomerId)
-          .Index(t => t.CustomerId);
-
-      CreateTable(
           "dbo.AspNetRoles",
           c => new
           {
             Id = c.String(nullable: false, maxLength: 128),
-            Name = c.String(nullable: false, maxLength: 256),
+            Name = c.String(nullable: false, maxLength: 256)
           })
           .PrimaryKey(t => t.Id)
           .Index(t => t.Name, unique: true, name: "RoleNameIndex");
@@ -316,21 +322,23 @@ namespace MusicTime.Data.Migrations
     public override void Down()
     {
       DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-      DropForeignKey("dbo.PostalAddresses", "VenueId", "dbo.Venues");
-      DropForeignKey("dbo.PostalAddresses", "RegionCode", "dbo.Regions");
       DropForeignKey("dbo.Customers", "RegionCode", "dbo.Regions");
       DropForeignKey("dbo.PostalAddresses", "CustomerId", "dbo.Customers");
       DropForeignKey("dbo.EmailAddresses", "CustomerId", "dbo.Customers");
       DropForeignKey("dbo.CustomerOrders", "CustomerId", "dbo.Customers");
       DropForeignKey("dbo.Customers", "CountryIso3", "dbo.Countries");
-      DropForeignKey("dbo.PostalAddresses", "Iso3", "dbo.Countries");
-      DropForeignKey("dbo.Concerts", "VenueId", "dbo.Venues");
       DropForeignKey("dbo.Tickets", "ProductId", "dbo.Products");
       DropForeignKey("dbo.OrderDetails", "ProductId", "dbo.Products");
       DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
       DropForeignKey("dbo.AspNetUsers", "RegionCode", "dbo.Regions");
+      DropForeignKey("dbo.PostalAddresses", "VenueId", "dbo.Venues");
+      DropForeignKey("dbo.Concerts", "VenueId", "dbo.Venues");
+      DropForeignKey("dbo.PostalAddresses", "User_Id", "dbo.AspNetUsers");
+      DropForeignKey("dbo.PostalAddresses", "RegionCode", "dbo.Regions");
       DropForeignKey("dbo.Regions", "Iso3", "dbo.Countries");
+      DropForeignKey("dbo.PostalAddresses", "Iso3", "dbo.Countries");
       DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
+      DropForeignKey("dbo.EmailAddresses", "User_Id", "dbo.AspNetUsers");
       DropForeignKey("dbo.CustomerOrders", "User_Id", "dbo.AspNetUsers");
       DropForeignKey("dbo.AspNetUsers", "CountryIso3", "dbo.Countries");
       DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
@@ -340,17 +348,19 @@ namespace MusicTime.Data.Migrations
       DropForeignKey("dbo.Artists", "BandId", "dbo.Bands");
       DropForeignKey("dbo.Albums", "BandId", "dbo.Bands");
       DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-      DropIndex("dbo.EmailAddresses", new[] { "CustomerId" });
       DropIndex("dbo.Customers", new[] { "RegionCode" });
       DropIndex("dbo.Customers", new[] { "CountryIso3" });
+      DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
+      DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
+      DropIndex("dbo.Regions", new[] { "Iso3" });
+      DropIndex("dbo.PostalAddresses", new[] { "User_Id" });
       DropIndex("dbo.PostalAddresses", new[] { "RegionCode" });
       DropIndex("dbo.PostalAddresses", new[] { "Iso3" });
       DropIndex("dbo.PostalAddresses", new[] { "VenueId" });
       DropIndex("dbo.PostalAddresses", new[] { "CustomerId" });
-      DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
-      DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
-      DropIndex("dbo.Regions", new[] { "Iso3" });
       DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
+      DropIndex("dbo.EmailAddresses", new[] { "User_Id" });
+      DropIndex("dbo.EmailAddresses", new[] { "CustomerId" });
       DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
       DropIndex("dbo.AspNetUsers", "UserNameIndex");
       DropIndex("dbo.AspNetUsers", new[] { "RegionCode" });
@@ -366,13 +376,13 @@ namespace MusicTime.Data.Migrations
       DropIndex("dbo.Artists", new[] { "BandId" });
       DropIndex("dbo.Albums", new[] { "BandId" });
       DropTable("dbo.AspNetRoles");
-      DropTable("dbo.EmailAddresses");
       DropTable("dbo.Customers");
-      DropTable("dbo.PostalAddresses");
-      DropTable("dbo.Venues");
       DropTable("dbo.AspNetUserRoles");
+      DropTable("dbo.Venues");
       DropTable("dbo.Regions");
+      DropTable("dbo.PostalAddresses");
       DropTable("dbo.AspNetUserLogins");
+      DropTable("dbo.EmailAddresses");
       DropTable("dbo.Countries");
       DropTable("dbo.AspNetUserClaims");
       DropTable("dbo.AspNetUsers");

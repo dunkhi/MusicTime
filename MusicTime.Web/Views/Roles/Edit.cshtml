@@ -1,0 +1,48 @@
+@model MusicTime.Domain.View_Models.RoleEditViewModel
+
+@{ ViewBag.Title = "Edit";
+  Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Roles", FormMethod.Post))
+{
+<div>
+  <h4>RoleDetailViewModel</h4>
+  <hr />
+  <div>
+    @Html.LabelFor(model => model.Name)
+    @Html.EditorFor(model => model.Name)
+  </div>
+
+  <table>
+    <caption>Users in Role</caption>
+    <tr>
+      <th class="col-sm-3">
+        Delete?
+      </th>
+      <th class="col-sm-9">
+        Name
+      </th>
+    </tr>
+    @foreach (var user in Model.Users)
+    {
+  <tr>
+    <td class="col-sm-3">
+      <input type="checkbox" name="usersToRemove" value="@user.Id.ToString()" />
+    </td>
+    <td class="col-sm-9">
+      @user.FullName
+    </td>
+  </tr>
+}
+  </table>
+  
+
+</div>
+        <div class="form-group">
+          <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+          </div>
+        </div>}
+
