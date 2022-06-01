@@ -149,7 +149,7 @@ namespace MusicTime.Data
         DefaultPostalAddress = aRepo.GetDefaultPostalAddress(customer.Id)
       };
       customerEVM.Countries = cRepo.GetCountries();
-      customerEVM.Regions = rRepo.GetRegionsEdit(customer);
+      customerEVM.Regions = rRepo.GetRegionsEdit(customer); //could just pass in 
       return customerEVM;
     }
 

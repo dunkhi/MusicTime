@@ -33,6 +33,8 @@ namespace MusicTime.Domain
     public string FullName { get; set; }
 
     public virtual ICollection<CustomerOrder> CustomerOrders { get; set; }
+    public virtual ICollection<EmailAddress> EmailAddresses { get; set; }
+    public virtual ICollection<PostalAddress> PostalAddresses { get; set; }
 
     [MaxLength(3)]
     public string CountryIso3 { get; set; }

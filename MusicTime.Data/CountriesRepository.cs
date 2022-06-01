@@ -17,13 +17,13 @@ namespace MusicTime.Data
     public IEnumerable<SelectListItem> GetCountries()
     {
       List<SelectListItem> countries = _context.Countries
-            .OrderBy(n => n.CountryNameEnglish)
-                .Select(n =>
-                new SelectListItem
-                {
-                  Value = n.Iso3.ToString(),
-                  Text = n.CountryNameEnglish
-                }).ToList();
+                                               .OrderBy(n => n.CountryNameEnglish)
+                                               .Select(n =>
+                                                  new SelectListItem
+                                                  {
+                                                    Value = n.Iso3.ToString(),
+                                                    Text = n.CountryNameEnglish
+                                                  }).ToList();
       var countrytip = new SelectListItem()
       {
         Value = null,

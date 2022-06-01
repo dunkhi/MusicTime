@@ -1,11 +1,16 @@
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using MusicTime.Data;
 using MusicTime.Domain;
 using MusicTime.Domain.Enums;
+using MusicTime.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace ConsoleApp
 {
@@ -14,39 +19,83 @@ namespace ConsoleApp
     static void Main(string[] args)
     {
       var _context = new ApplicationDbContext();
-      var artist = _context.Artists.Where(a => a.Id == 1).First();
-      Console.WriteLine($"Artist Name before update {artist.FullName}");
-      artist.FirstName = "Herman";
-      artist.LastName = "Giambi";
-      _context.SaveChanges();
-      Console.WriteLine($"Artist Name after changing {artist.FullName}");
+
+      //CreateRoles();
+      //CreateUsers();
+      InsertCountriesRegions();
+      var roles = _context.Roles.ToList();
+      var users = _context.Users.ToList();
+      //var artist = _context.Artists.Where(a => a.Id == 1).First();
+      //Console.WriteLine($"Artist Name before update {artist.FullName}");
+      //artist.FirstName = "Herman";
+      //artist.LastName = "Giambi";
+      //_context.SaveChanges();
+      //Console.WriteLine($"Artist Name after changing {artist.FullName}");
+    }
+
+    private static void CreateRoles()
+    {
+      var context = new ApplicationDbContext();
+      var rm = new ApplicationRoleManager(new RoleStore<IdentityRole>(context));
+      var roleName = "Admin";
+
+      if (!rm.RoleExists(roleName))
+      {
+        var roleResult = rm.Create(new IdentityRole(roleName));
+        if (roleResult.Succeeded)
+        {
+          Console.WriteLine($"Role successfully created.");
+        }
+      }
+      Console.WriteLine($"Role already exists.");
+    }
+
+    private static void CreateUsers()
+    {
+      var context = new ApplicationDbContext();
+      var um = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
+      var password = "password";
+
+      var user = new ApplicationUser
+      {
+        FirstName = "Craig",
+        LastName = "Seewa",
+        UserName = "csirois",
+        Email = "csirois@gmail.com"
+      };
+
+      var userCreated = um.Create(user, password);
+      Console.WriteLine($"User Created: {userCreated.ToString()}");
+      var userToRole = um.AddToRole(user.Id, "Admin");
+      Console.WriteLine($"User to Role: {userToRole.ToString()}");
+      context.SaveChanges();
     }
 
     private static void InsertCountriesRegions()
     {
       var context = new ApplicationDbContext();
-      //var countries = new List<Country>
-      //{
-      //  new Country {
-      //              Iso3 = "USA",
-      //              CountryNameEnglish = "United States of America"
-      //          },
-      //          new Country
-      //          {
-      //              Iso3 = "CAN",
-      //              CountryNameEnglish = "Canada"
-      //          },
-      //          new Country
-      //          {
-      //              Iso3 = "FRA",
-      //              CountryNameEnglish = "France"
-      //          }
-      //};
-      //foreach (var c in countries)
-      //{
-      //  context.Countries.Add(c);
-      //}
-      //context.SaveChanges();
+      var countries = new List<Country>
+      {
+        new Country {
+                    Iso3 = "USA",
+                    CountryNameEnglish = "United States of America"
+                },
+                new Country
+                {
+                    Iso3 = "CAN",
+                    CountryNameEnglish = "Canada"
+                },
+                new Country
+                {
+                    Iso3 = "FRA",
+                    CountryNameEnglish = "France"
+                }
+      };
+      foreach (var c in countries)
+      {
+        context.Countries.Add(c);
+      }
+      context.SaveChanges();
 
       var regions = new List<Region>
             {

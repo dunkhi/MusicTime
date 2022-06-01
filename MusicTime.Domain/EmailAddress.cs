@@ -18,6 +18,6 @@ namespace MusicTime.Domain
 
     //[UIHint("IsDefault")]
     public bool IsDefault { get; set; }
-    public virtual Customer Customer { get; set; }
+    public virtual ApplicationUser User { get; set; }
   }
 }

@@ -62,5 +62,20 @@ namespace MusicTime.Data
                               }).ToList();
       return new SelectList(customerRegion, "Value", "Text", customer.RegionCode);
     }
+
+    public IEnumerable<SelectListItem> GetUserRegion(ApplicationUser user)
+    {
+      var userRegion = _context.Regions.AsNoTracking()
+                               .OrderBy(r => r.RegionNameEnglish)
+                               .Where(r => r.Iso3 == user.CountryIso3)
+                               .Select(r =>
+                                new SelectListItem
+                                {
+                                  Value = r.RegionCode,
+                                  Text = r.RegionNameEnglish
+                                }
+                               ).ToList();
+      return new SelectList(userRegion, "Value", "Text", user.RegionCode);
+    }
   }
 }

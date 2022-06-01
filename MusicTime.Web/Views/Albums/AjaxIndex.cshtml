@@ -1,0 +1,70 @@
+@{
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
+  <title></title>
+</head>
+<body>
+  <div class="container">
+    <h3>Ajax Schools</h3>
+    @Ajax.ActionLink("List all Albums", "AllAlbums", "Albums", new AjaxOptions
+{
+  UpdateTargetId = "UpdateContentDiv",
+  InsertionMode = InsertionMode.Replace,
+  HttpMethod = "GET"
+},
+new { @class = "btn btn-primary" }
+    )
+
+    @Ajax.ActionLink("List All Artists", "AllArtists", "Albums", new AjaxOptions
+{
+  UpdateTargetId = "UpdateContentDiv",
+  InsertionMode = InsertionMode.Replace,
+  HttpMethod = "GET"
+},
+new { @class = "btn btn-success"})
+    <div id="UpdateContentDiv">
+
+    </div>
+
+    <h3>Ajax Search</h3>
+    <div class="card-body">
+      @Html.ActionLink("AjaxSearch", "AjaxSearch")
+      @using (Ajax.BeginForm("AjaxSearch", "Albums", new AjaxOptions
+      {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "GET",
+        OnFailure = "searchFailed",
+        UpdateTargetId = "searchResult",
+      }))
+      {
+        <input type="text" name="q" class="form-control" />
+        <input type="submit" value="search" class="btn btn-success" />
+      }
+    </div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th colspan="7">List Albums</th>
+        </tr>
+        <tr>
+          <th>STT</th>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Full Name</th>
+          <th>Product Name</th>
+          <th>Band Name</th>
+        </tr>
+      </thead>
+      <tbody id="searchResult">
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>

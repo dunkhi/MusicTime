@@ -1,0 +1,22 @@
+@model MusicTime.Domain.View_Models.UserEditViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+  First Name: @Model.FirstName
+  Last Name: @Model.LastName
+
+  <table>
+    <tr><th>Roles</th></tr>
+    @foreach(var roles in Model.IdentityRoles)
+      {
+        <tr><td>@roles.Name</td></tr>
+      }
+  </table>
+</div>
+
