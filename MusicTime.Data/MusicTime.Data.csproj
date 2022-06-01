@@ -105,12 +105,14 @@
   <ItemGroup>
     <Compile Include="AddressRepository.cs" />
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="ArtistRepository.cs" />
     <Compile Include="BandRepository.cs" />
     <Compile Include="CountriesRepository.cs" />
     <Compile Include="CustomerRepository.cs" />
-    <Compile Include="Migrations\202204271539157_InitialMigration.cs" />
-    <Compile Include="Migrations\202204271539157_InitialMigration.Designer.cs">
-      <DependentUpon>202204271539157_InitialMigration.cs</DependentUpon>
+    <Compile Include="Helpers\HtmlHelpers.cs" />
+    <Compile Include="Migrations\202205042100251_InitialMigration.cs" />
+    <Compile Include="Migrations\202205042100251_InitialMigration.Designer.cs">
+      <DependentUpon>202205042100251_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -131,8 +133,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202204271539157_InitialMigration.resx">
-      <DependentUpon>202204271539157_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202205042100251_InitialMigration.resx">
+      <DependentUpon>202205042100251_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

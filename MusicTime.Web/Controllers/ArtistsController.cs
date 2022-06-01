@@ -14,11 +14,13 @@ namespace MusicTime.Web.Controllers
   public class ArtistsController : Controller
   {
     private ApplicationDbContext db = new ApplicationDbContext();
+    private ArtistRepository _artistRepository;
     List<Artist> artistsList = new List<Artist>();
 
     public ArtistsController()
     {
       artistsList = db.Artists.Include(a => a.Band).ToList();
+      _artistRepository = new ArtistRepository(new ApplicationDbContext());
     }
 
     public ActionResult IndexAjax()
@@ -38,15 +40,38 @@ namespace MusicTime.Web.Controllers
     }
 
     // GET: Artists
-    public ActionResult Index(string searchTerm, string Instruments)
+    public ActionResult Index()
     {
       ViewBag.Instruments = db.Artists.Select(i => i.Instrument).Distinct();
       var artists = db.Artists.Include(a => a.Band).ToList();
-      if (!string.IsNullOrWhiteSpace(searchTerm))
-      {
-        artists = db.Artists.Where(a => a.FirstName.Contains(searchTerm) || a.Band.Name.Contains(searchTerm)).ToList();
-      }
       return View(artists.ToList());
+    }
+
+    [HttpPost]
+    public ActionResult Index(string artistName, int? artistId)
+    {
+      ViewBag.Message = $"Arist Name: {artistName}, Artist Id: {artistId.ToString()}";
+      return View();
+    }
+
+    public JsonResult ArtistSearch(string q)
+    {
+      var result = db.Artists.Where(a => a.FirstName.StartsWith(q)).ToArray();
+      var s = Json(result, JsonRequestBehavior.AllowGet);
+      return s;
+    }
+
+    [HttpPost]
+    public JsonResult AutoComplete(string prefix)
+    {
+      var artists = (from artist in db.Artists
+                     where artist.FirstName.StartsWith(prefix)
+                     select new
+                     {
+                       label = artist.FirstName,
+                       val = artist.Id
+                     }).ToList();
+      return Json(artists);
     }
 
     public ActionResult IndexPartial()
@@ -116,12 +141,13 @@ namespace MusicTime.Web.Controllers
       {
         return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
       }
-      Artist artist = db.Artists.Find(id);
+      //Artist artist = db.Artists.Find(id);
+      var artist = _artistRepository.GetArtistEvm(id);
       if (artist == null)
       {
         return HttpNotFound();
       }
-      ViewBag.BandId = new SelectList(db.Bands, "id", "Name", artist.BandId);
+      //ViewBag.BandId = new SelectList(db.Bands, "id", "Name", artist.BandId);
       return View(artist);
     }
 

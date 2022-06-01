@@ -1,0 +1,15 @@
+@model IEnumerable<MusicTime.Domain.Album>
+@{ int STT = 0;}
+@foreach (var m in Model)
+{
+  STT++;
+  <tr>
+    <td>@STT</td>
+    <td>@m.Title</td>
+    <td>@m.Price</td>
+    <td>@m.Product.Name</td>
+    <td>@m.Band.Name</td>
+    <td>@Html.ActionLink("Modeify", "Edit", "Album", new { id = m.Id })</td>
+    <td>@Html.ActionLink("Removed", "Delete", "Album", new { id = m.Id })</td>
+  </tr>
+}

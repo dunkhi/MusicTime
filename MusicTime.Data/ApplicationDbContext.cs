@@ -15,6 +15,7 @@ namespace MusicTime.Data
     public ApplicationDbContext()
         : base("MusicTimeAuthContext", throwIfV1Schema: false)
     {
+      this.Configuration.ProxyCreationEnabled = false;
     }
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -47,6 +48,10 @@ namespace MusicTime.Data
     {
       return new ApplicationDbContext();
     }
+
+    public System.Data.Entity.DbSet<MusicTime.Domain.Product> Products { get; set; }
+
+    //public System.Data.Entity.DbSet<MusicTime.Domain.View_Models.ArtistEditViewModel> ArtistEditViewModels { get; set; }
 
     //public System.Data.Entity.DbSet<MusicTime.Domain.View_Models.UserEditViewModel> UserEditViewModels { get; set; }
   }

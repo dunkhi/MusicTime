@@ -93,6 +93,7 @@
     <Compile Include="Enums\VenueType.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="OrderDetails.cs" />
+    <Compile Include="PersonModel.cs" />
     <Compile Include="PostalAddress.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +101,8 @@
     <Compile Include="Ticket.cs" />
     <Compile Include="Venue.cs" />
     <Compile Include="View Models\AddressTypeViewModel.cs" />
+    <Compile Include="View Models\ArtistViewModel.cs" />
+    <Compile Include="View Models\BandViewModels.cs" />
     <Compile Include="View Models\CustomerDisplayViewModel.cs" />
     <Compile Include="View Models\CustomerEditViewModel.cs" />
     <Compile Include="View Models\EmailAddressListViewModel.cs" />

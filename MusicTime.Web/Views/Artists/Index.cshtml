@@ -4,18 +4,40 @@
   ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h2>Index2</h2>
+<head>
+  @*<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0-beta1/js/bootstrap.min.js"></script>*@
+  @Styles.Render("~/Content/jqueryui")
+  @Styles.Render("~/Content/typeahead")
+</head>
 <p>
   @Html.ActionLink("Create New", "Create")
 </p>
-@using (Html.BeginForm("Index", "Artists", FormMethod.Get))
+<body>
+  <div class="container">
+    <h1>Typeahead Demo</h1>
+    <div>
+      <input id="courses" class="typeahead" type="text" placeholder="Classes I've Taken">
+    </div>
+    <div>
+      <input id="txtAlbums" class="typeahead" typeof="text" placeholder="Search Albums" />
+    </div>
+    <div>
+      <input id="txtArtists" class="typeahead" typeof="text" placeholder="Search Artists" />
+      <button id="btnArtists" type="submit" class="btn btn-success"></button>
+    </div>
+  </div>
+</body>
+@ViewBag.Message
+@using (Html.BeginForm("Index", "Artists", FormMethod.Post))
 {
+  <input type="text" id="txtArtist" name="ArtistName" class="form-control" autocomplete="on" style="width:300px" />
+  <input type="hidden" id="hfArtistr" name="ArtistId" />
   <div>
     @Html.TextBox("searchTerm")
   </div>
   <div>
-    <input type="submit" name="submit" value="Search" />
+    <input type="submit" name="submit" value="Search" id="btnSubmit" />
   </div>
 
 }
@@ -48,3 +70,127 @@
   }
 
 </table>
+<div id="divArtists"></div>
+@section Scripts{
+  <script type="text/javascript" src="~/Scripts/handlebars-v4.7.7.js"></script>
+}
+<script type="text/javascript">
+
+  var courses = ["JASON KIDD, IT 102 PROGRAMMING FUNDAMENTALS", "IT 114 CompTIA A+ PREP", "IT 131 NETWORKING FUNDAMENTALS", "IT 135 CompTIA SECURITY+ PREP", "IT 141 CS & WORK ENV FOR IT PRO", "IT 160 WINDOWS SERVER ADMIN I", "IT 175 STUDENT ASSISTANT", "IT 178 IT WORK EXPERIENCE", "IT 190 LINUX ADMINISTRATION I", "IT 201 DATABASE FUNDAMENTALS", "IT 206 FRONT-END WEB DEV", "IT 210 INTRO ROUTING/SWITCHING", "IT 219 PROGRAMMING I", "IT 240 WINDOWS SERVER ADMIN II", "IT 243 LINUX ADMINISTRATION II", "IT 340 NETWORK SEC & FIREWALLS", "IT 360 FORENSICS/VULNERABILITY", "IT 460 THREAT ANALYSIS", "IT 426 DESIGN PATTERNS/PRACTICE", "IT 410 DESIGN/SUPPORT NETWORKS", "IT 405 MOBILE DEV FRAMEWORKS", "IT 390 MOBILE DEV/WIRELESS NET", "IT 372 SOFTWARE MAINTENANCE", "IT 355 AGILE DEV METHODS", "IT 344 VIRTUALIZATION & STORAGE", "IT 305 WEB DEV FRAMEWORKS", "IT 301 SYSTEMS PROGRAMMING"];
+
+  var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+    'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+    'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+    'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+    'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+    'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+    'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+    'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+    'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+  ];
+
+  // Suggestion engine
+  var courses = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: courses
+  });
+
+  var bloodstates = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: states
+  });
+
+  $('#courses').typeahead({
+    hint: true,
+    highlight: true,
+    minLength: 1
+  }, {
+    name: 'courses',
+    source: courses,
+  });
+
+  function getJsonAlbums() {
+    console.log('on load again');
+    var url = '@Url.Action("GetJsonAlbums", "Experiment")';
+    var albums = '';
+    $.get({
+      url: url,
+    })
+      .done(function (result) {
+        albums = result;
+        console.log('in getJsonAlbums() .done function result = ');
+        console.log(albums);
+      });
+
+    return albums;
+  }
+
+  $('#btnArtists').click(function () {
+    $.get({
+      url: '@Url.Action("GetJsonArtists", "Experiment")',
+      data: { q: $('#txtArtists').val() },
+      success: function (response) {
+        console.log(response.FirstName);
+        $('#divArtists').html(response);
+      }
+    })
+  })
+
+  $(function () {
+    var albums = new Bloodhound({
+      remote: {
+        url: '@Url.Action("GetJsonAlbums", "Experiment")' + '?q=%QUERY',
+        wildcard: '%QUERY',
+        ajax: {
+          type: "POST",
+          dataType: "json",
+          contentType: "application/json; charset=utf-8"
+        }
+      },
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      limit: 100
+      }
+    )
+    console.log('Bloodhound albums: ' + albums);
+    $('#txtAlbums').typeahead({
+      hint: true,
+      highlight: true,
+      minLength: 1
+    }, {
+      name: 'albums',
+      display: 'Title',
+      source: albums,
+    });
+  })
+  $(function () {
+    var artists = new Bloodhound({
+    remote: {
+      url: '@Url.Action("GetJsonArtists", "Experiment")' + '?q=%QUERY',
+        wildcard: '%QUERY',
+        ajax: {
+          type: "POST",
+          dataType: "json",
+          contentType: "application/json; charset=utf-8"
+        }
+      },
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      limit: 100
+
+  });
+    console.log('bloodhound artists:' + artists);
+
+  $('#txtArtists').typeahead({
+    hint: true,
+    highlight: true,
+    minLength: 1
+  }, {
+    name: 'artists',
+    display: 'FirstName',
+    source: artists
+  });
+  })
+</script>

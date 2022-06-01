@@ -9,7 +9,8 @@ namespace MusicTime.Web
     public static void RegisterBundles(BundleCollection bundles)
     {
       bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                  "~/Scripts/jquery-{version}.js"));
+                  "~/Scripts/jquery-{version}.js")
+                  .Include("~/Scripts/typeahead.bundle.js").Include("~/Scripts/jquery-ui.js").Include("~/Scripts/jquery.unobtrusive-ajax.js"))  ;
 
       bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                   "~/Scripts/jquery.validate*"));
@@ -32,6 +33,10 @@ namespace MusicTime.Web
 
       bundles.Add(new ScriptBundle("~/bundles/jqueryunobstrusive").Include(
                                     "~/Scripts/jquery.unobstrusive-ajax.js"));
+
+      bundles.Add(new StyleBundle("~/Content/jqueryui").Include("~/Content/jquery-ui.css", "~/Content/jquery-ui.theme.css"));
+
+      bundles.Add(new StyleBundle("~/Content/typeahead").Include("~/Content/typeahead.css"));
     }
   }
 }

@@ -1,0 +1,132 @@
+@model MusicTime.Domain.PersonModel
+
+<body>
+  <div class="form-group">
+    <div class="form-inline">
+      <label>Select Year</label>
+      <select id="ddlGetAlbumYears" class="form-control">
+      </select>
+    </div>
+  </div>
+  <input type="text" id="txtName" />
+  <input type="button" id="btnGet" value="Get Current Time" onclick="loadAlbums()" />
+  <input type="button" id="btnClose" value="x" />
+  <div id="result"></div>
+  <script type="text/javascript">
+
+
+
+    $(function () {
+      loadYears();
+      console.log("Ajax Function");
+      $("#btnGet").click(function () {
+        $.ajax({
+          type: 'POST',
+          url: "Experiment/PostMethod",
+          dataType: 'json',
+          data: { name: $("#txtName").val() + "turner" },
+          success: function (data) {
+            alert("Hello: " + data.Name + data.DateTime );
+          }
+        });
+      });
+    })
+    $(function () {
+      $("#btnGet").click(function () {
+        console.log("in first function")
+        $.post("Experiment/PostMethod",
+          {
+            name: $("#txtName").val()
+          },
+          function (response) {
+            alert("Increase in Benefits" + response.Name + ".\nCurrent Date Time: " + response.DateTime);
+          }
+        );
+      });
+    });
+
+    function loadYears() {
+      var url = '@Url.Action("GetAlbumYears", "Experiment")';
+      $.post({
+        url: url
+      })
+        .done(function (response) {
+          var s = '<option value="-1">Please Select a An Album</option>';
+          for (var i = 0; i < response.length; i++) {
+            s += '<option value= "' + response[i].AlbumId + '">' + response[i].AlbumYear + '</option>';
+          }
+          $("#ddlGetAlbumYears").html(s);
+          console.log(response[1].AlbumId);
+        })
+      @*$.ajax({
+        url = url,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          var s = '<option value="-1">Please Select a An Album</option>';
+          for (var i = 0; i < data.length; i++) {
+            s += '<option value= "' + data[i].AlbumId + '">' + data[i].AlbumYear + '</option>';
+          }
+          $("#ddlGetAlbumYears").append(s);
+        }
+      });*@
+    }
+
+    @*$(document).on("click", "#btnGet", function () {
+      $("#result").load('Experiment/Getalbums');
+    })*@
+
+    $(function () {
+      $("#btnClose").click(function () {
+        console.log("btnClose");
+        $("#result").html("");
+      })
+    })
+
+    function loadAlbums() {
+      console.log("loadAlbums");
+      $.ajax({
+        url: 'Experiment/Getalbums',
+        type: 'GET'
+      }).done(function (result) {
+        $("#result").html(result);
+      })
+    }
+
+    function closeForm() {
+      $("#result")
+        .hide()
+        .html("");
+    }
+
+    function anotherFunction() {
+
+    }
+
+    $(function () {
+      $("#btnClose2").click(function () {
+        console.log("btnClose2");
+        $("#result").html("");
+      })
+    })
+
+    @*$(document).on("click", "#btnGet", function () {
+      var jqxhr =
+        $.post("Experiment/PostMethod",
+          {
+            name: $("#txtName").val()
+          })
+          .done(function (data) {
+            alert("I don't know if: " + data.Name + ".\nCurrent Date Time: " + data.DateTime);
+            $("#result").html(data.Name);
+          })
+          .fail(function () {
+            alert("error")
+          })
+          .always(function () {
+            console.log("finished")
+          })
+
+    })*@
+  </script>
+</body>

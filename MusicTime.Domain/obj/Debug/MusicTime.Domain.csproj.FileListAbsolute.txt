@@ -26,4 +26,3 @@ C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\obj\Debug\MusicTime.Domai
 C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\obj\Debug\MusicTime.Domain.csproj.CopyComplete
 C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\obj\Debug\MusicTime.Domain.dll
 C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\obj\Debug\MusicTime.Domain.pdb
-C:\Users\craig\source\repos\MusicTime\MusicTime.Domain\obj\Debug\MusicTime.Domain.csproj.AssemblyReference.cache

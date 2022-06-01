@@ -13,6 +13,7 @@ namespace MusicTime.Domain
     public string Description { get; set; }
     public double Price { get; set; }
     public ICollection<Ticket> Tickets { get; set; }
+    public ICollection<Product> Products { get; set; }
     public ICollection<OrderDetails> OrderDetails { get; set; }
   }
 }
