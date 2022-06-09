@@ -5,6 +5,22 @@
 }
 
 <h2>Index2</h2>
+<style type="text/css">
+  .typeahead,
+  .tt-query,
+  .tt-hint {
+    width: 396px;
+    height: 30px;
+    padding: 8px 12px;
+    font-size: 24px;
+    line-height: 30px;
+    border: 2px solid #ccc;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    outline: none;
+  }
+</style>
 <head>
   @*<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0-beta1/js/bootstrap.min.js"></script>*@
   @Styles.Render("~/Content/jqueryui")
@@ -16,9 +32,6 @@
 <body>
   <div class="container">
     <h1>Typeahead Demo</h1>
-    <div>
-      <input id="courses" class="typeahead" type="text" placeholder="Classes I've Taken">
-    </div>
     <div>
       <input id="txtAlbums" class="typeahead" typeof="text" placeholder="Search Albums" />
     </div>
@@ -75,42 +88,6 @@
   <script type="text/javascript" src="~/Scripts/handlebars-v4.7.7.js"></script>
 }
 <script type="text/javascript">
-
-  var courses = ["JASON KIDD, IT 102 PROGRAMMING FUNDAMENTALS", "IT 114 CompTIA A+ PREP", "IT 131 NETWORKING FUNDAMENTALS", "IT 135 CompTIA SECURITY+ PREP", "IT 141 CS & WORK ENV FOR IT PRO", "IT 160 WINDOWS SERVER ADMIN I", "IT 175 STUDENT ASSISTANT", "IT 178 IT WORK EXPERIENCE", "IT 190 LINUX ADMINISTRATION I", "IT 201 DATABASE FUNDAMENTALS", "IT 206 FRONT-END WEB DEV", "IT 210 INTRO ROUTING/SWITCHING", "IT 219 PROGRAMMING I", "IT 240 WINDOWS SERVER ADMIN II", "IT 243 LINUX ADMINISTRATION II", "IT 340 NETWORK SEC & FIREWALLS", "IT 360 FORENSICS/VULNERABILITY", "IT 460 THREAT ANALYSIS", "IT 426 DESIGN PATTERNS/PRACTICE", "IT 410 DESIGN/SUPPORT NETWORKS", "IT 405 MOBILE DEV FRAMEWORKS", "IT 390 MOBILE DEV/WIRELESS NET", "IT 372 SOFTWARE MAINTENANCE", "IT 355 AGILE DEV METHODS", "IT 344 VIRTUALIZATION & STORAGE", "IT 305 WEB DEV FRAMEWORKS", "IT 301 SYSTEMS PROGRAMMING"];
-
-  var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-    'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-    'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-    'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-    'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-    'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-    'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-    'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-    'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-  ];
-
-  // Suggestion engine
-  var courses = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.whitespace,
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    local: courses
-  });
-
-  var bloodstates = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.whitespace,
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    local: states
-  });
-
-  $('#courses').typeahead({
-    hint: true,
-    highlight: true,
-    minLength: 1
-  }, {
-    name: 'courses',
-    source: courses,
-  });
-
   function getJsonAlbums() {
     console.log('on load again');
     var url = '@Url.Action("GetJsonAlbums", "Experiment")';
@@ -139,6 +116,10 @@
   })
 
   $(function () {
+
+  })
+
+  $(function () {
     var albums = new Bloodhound({
       remote: {
         url: '@Url.Action("GetJsonAlbums", "Experiment")' + '?q=%QUERY',
@@ -149,12 +130,11 @@
           contentType: "application/json; charset=utf-8"
         }
       },
-      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       limit: 100
       }
     )
-    console.log('Bloodhound albums: ' + albums);
     $('#txtAlbums').typeahead({
       hint: true,
       highlight: true,
@@ -164,8 +144,7 @@
       display: 'Title',
       source: albums,
     });
-  })
-  $(function () {
+
     var artists = new Bloodhound({
     remote: {
       url: '@Url.Action("GetJsonArtists", "Experiment")' + '?q=%QUERY',
@@ -176,7 +155,7 @@
           contentType: "application/json; charset=utf-8"
         }
       },
-      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('age'),
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       limit: 100
 
@@ -190,7 +169,21 @@
   }, {
     name: 'artists',
     display: 'FirstName',
-    source: artists
-  });
+    source: artists,
+    templates: {
+      header: '<h3 class="league-name">Artists</h3>',
+      notFound: '<div>Not Found</div>'
+    }
+  },
+    {
+      name: 'albums',
+      display: 'Title',
+      source: albums,
+      templates: {
+        header: '<h3 class="league-name">Albums</h3>',
+        notFound: '<div>Not Found</div>'
+      }
+    }
+    );
   })
 </script>
