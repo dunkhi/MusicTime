@@ -179,6 +179,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-select.css" />
     <Content Include="Content\customer.png" />
     <Content Include="Content\frog.png" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -208,6 +209,9 @@
     <Content Include="Content\BandDetails.css" />
     <Content Include="Scripts\App\GetRegions.js" />
     <Content Include="Scripts\App\HomeScript.js" />
+    <Content Include="Content\bootstrap-multiselect.css" />
+    <Content Include="Scripts\bootstrap-multiselect.js" />
+    <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -335,6 +339,9 @@
     <Content Include="Views\Experiment\Index.cshtml" />
     <Content Include="Views\Experiment\AllAlbums.cshtml" />
     <Content Include="Views\Experiment\_EditPartial.cshtml" />
+    <Content Include="Views\Artists\Index2.cshtml" />
+    <Content Include="Views\Experiment\_GetRegionsPartial.cshtml" />
+    <Content Include="Views\Experiment\FunView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

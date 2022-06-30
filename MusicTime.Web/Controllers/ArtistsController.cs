@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MusicTime.Data;
 using MusicTime.Domain;
+using MusicTime.Domain.View_Models;
 
 namespace MusicTime.Web.Controllers
 {
@@ -44,7 +45,31 @@ namespace MusicTime.Web.Controllers
     {
       ViewBag.Instruments = db.Artists.Select(i => i.Instrument).Distinct();
       var artists = db.Artists.Include(a => a.Band).ToList();
+      ViewBag.Bands = db.Bands.Select(b => new SelectListItem
+      {
+        Value = b.id.ToString(),
+        Text = b.Name
+      });
       return View(artists.ToList());
+    }
+
+    public ActionResult Index2()
+    {
+      var vm = new ExperimentViewModel()
+      {
+        Bands = db.Bands.Select(b => new SelectListItem
+        {
+          Value = b.id.ToString(),
+          Text = b.Name
+        })
+      };
+
+      ViewBag.Rockets = db.Bands.Select(b => new SelectListItem
+      {
+        Value = b.id.ToString(),
+        Text = b.Name
+      });
+      return View(vm);
     }
 
     [HttpPost]
@@ -52,6 +77,16 @@ namespace MusicTime.Web.Controllers
     {
       ViewBag.Message = $"Arist Name: {artistName}, Artist Id: {artistId.ToString()}";
       return View();
+    }
+
+    public IEnumerable<SelectListItem> GetArtistDropdown()
+    {
+      var dropdown = db.Bands.Select(b => new SelectListItem
+      {
+        Value = b.id.ToString(),
+        Text = b.Name
+      });
+      return dropdown;
     }
 
     public JsonResult ArtistSearch(string q)
