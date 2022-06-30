@@ -22,7 +22,13 @@
   }
 </style>
 <head>
+
   @*<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0-beta1/js/bootstrap.min.js"></script>*@
+  <link rel="stylesheet" href="~/Content/bootstrap-multiselect.css" />
+  <script type="text/javascript" src="~/Scripts/bootstrap-multiselect.js"></script>
+  <link rel="stylesheet" href="~/Content/bootstrap-select.css" />
+  <script type="text/javascript" src="~/Scripts/bootstrap-select.js"></script>
+
   @Styles.Render("~/Content/jqueryui")
   @Styles.Render("~/Content/typeahead")
 </head>
@@ -33,18 +39,27 @@
   <div class="container">
     <h1>Typeahead Demo</h1>
     <div>
-      <input id="txtAlbums" class="typeahead" typeof="text" placeholder="Search Albums" />
-    </div>
-    <div>
-      <input id="txtArtists" class="typeahead" typeof="text" placeholder="Search Artists" />
-      <button id="btnArtists" type="submit" class="btn btn-success"></button>
+      <input id="txtArtists" class="typeahead form-control" typeof="text" placeholder="Search Artists" />
+      <button id="btnArtists" type="submit" class="btn btn-success" onclick="getselectedartists()" value="GetArtists"></button>
     </div>
   </div>
 </body>
+<select id="example-getting-started" class="selectpicker" multiple data-actions-box="true">
+  <option value="cheese">Cheese</option>
+  <option value="tomatoes">Tomatoes</option>
+  <option value="mozarella">Mozzarella</option>
+  <option value="mushrooms">Mushrooms</option>
+  <option value="pepperoni">Pepperoni</option>
+  <option value="onions">Onions</option>
+</select>
+
+@Html.DropDownList("Bands", null, new { @multiple = "multiple" })
+@Html.ListBox("Bands", null, new { @multiple = "multiple", @id = "lbBands" })
+
 @ViewBag.Message
 @using (Html.BeginForm("Index", "Artists", FormMethod.Post))
 {
-  <input type="text" id="txtArtist" name="ArtistName" class="form-control" autocomplete="on" style="width:300px" />
+  <input type="text" id="txtArtist" name="ArtistName" class="form-control typeahead-box" autocomplete="on" style="width:300px" />
   <input type="hidden" id="hfArtistr" name="ArtistId" />
   <div>
     @Html.TextBox("searchTerm")
@@ -88,6 +103,41 @@
   <script type="text/javascript" src="~/Scripts/handlebars-v4.7.7.js"></script>
 }
 <script type="text/javascript">
+  $(document).ready(function () {
+
+    $("#example-getting-started").selectpicker();
+
+    $('#lbBands').multiselect({
+      includeSelectAllOption: true,
+      buttonClass: "btn btn-success",
+      enableFiltering: true,
+      enableCaseInsensitiveFiltering: true,
+      templates: {
+        filter: '<div class="multiselect-filter"><div class="input-group input-group-sm p-1"><div class="input-group-prepend"><i class="input-group-text fas fa-search"></i></div><input class="form-control multiselect-search" type="text" /><div class="input-group-append"><button class="multiselect-clear-filter input-group-text" type="button"><i class="fas fa-times"></i></button></div></div></div>'
+      }
+    });
+
+    $('#Bands').multiselect({
+      includeSelectAllOption: true,
+      buttonClass: "btn btn-success",
+      enableFiltering: true,
+      enableCaseInsensitiveFiltering: true,
+      templates: {
+        filter: '<div class="multiselect-filter"><div class="input-group input-group-sm p-1"><div class="input-group-prepend"><i class="input-group-text fas fa-search"></i></div><input class="form-control multiselect-search" type="text" /><div class="input-group-append"><button class="multiselect-clear-filter input-group-text" type="button"><i class="fas fa-times"></i></button></div></div></div>'
+      }
+    });
+
+  });
+
+  
+
+  function getselectedartists() {
+    var selected = $("#Bands:selected");
+    $.each(selected, function (i, val) {
+      console.log('selected: ' + val);
+    })
+  }
+
   function getJsonAlbums() {
     console.log('on load again');
     var url = '@Url.Action("GetJsonAlbums", "Experiment")';
@@ -116,10 +166,6 @@
   })
 
   $(function () {
-
-  })
-
-  $(function () {
     var albums = new Bloodhound({
       remote: {
         url: '@Url.Action("GetJsonAlbums", "Experiment")' + '?q=%QUERY',
@@ -135,15 +181,6 @@
       limit: 100
       }
     )
-    $('#txtAlbums').typeahead({
-      hint: true,
-      highlight: true,
-      minLength: 1
-    }, {
-      name: 'albums',
-      display: 'Title',
-      source: albums,
-    });
 
     var artists = new Bloodhound({
     remote: {
@@ -160,7 +197,6 @@
       limit: 100
 
   });
-    console.log('bloodhound artists:' + artists);
 
   $('#txtArtists').typeahead({
     hint: true,
@@ -168,11 +204,13 @@
     minLength: 1
   }, {
     name: 'artists',
-    display: 'FirstName',
+    display: 'LastName',
     source: artists,
     templates: {
       header: '<h3 class="league-name">Artists</h3>',
-      notFound: '<div>Not Found</div>'
+      empty: '<div>No Artists Found</div>',
+      suggestion: Handlebars.compile('<div><p id="typeaheadSuggestion" class="typeahead-name">{{Age}}</p><p class="typeahead-desc">{{ArtistBio}}</p></div>')
+
     }
   },
     {
@@ -181,9 +219,14 @@
       source: albums,
       templates: {
         header: '<h3 class="league-name">Albums</h3>',
-        notFound: '<div>Not Found</div>'
+        notFound: '<div>No albums found</div>'
       }
     }
     );
   })
+
+  $('.typeahead').bind('typeahead:select', function (ev, suggestion) {
+    console.log('Selection: ' + suggestion.FirstName + 'ev: ' + ev.LastName);
+  })
+
 </script>

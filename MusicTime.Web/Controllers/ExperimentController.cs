@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace MusicTime.Web.Controllers
 {
@@ -44,7 +45,7 @@ namespace MusicTime.Web.Controllers
 
     public JsonResult GetJsonArtists(string q)
     {
-      var artists = _context.Artists.Where(a => a.FirstName.Contains(q)).ToList();
+      var artists = _context.Artists.Where(a => a.FirstName.Contains(q) || a.LastName.Contains(q)).ToList();
       return Json(artists, JsonRequestBehavior.AllowGet);
     }
 
@@ -55,6 +56,28 @@ namespace MusicTime.Web.Controllers
         AlbumId = x.Id,
         AlbumYear = x.Year
       }).ToList(), JsonRequestBehavior.AllowGet);
+    }
+
+    public ActionResult FunView()
+    {
+      return View();
+    }
+
+    public ActionResult GetRegionsPaging(int pagenumber)
+    {
+      var pagesize = 5;
+      var result = _context.Regions
+                           .Include(r => r.Country)
+                           .OrderBy(r => r.RegionNameEnglish)
+                           .Skip(pagenumber * pagesize)
+                           .Take(pagesize)
+                           .ToList();
+
+      ViewBag.PageNumber = pagenumber;
+
+      var message = $"pagenumber {pagenumber}";
+
+      return PartialView("_GetRegionsPartial", result);
     }
   }
 }

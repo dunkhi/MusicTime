@@ -107,6 +107,7 @@
     <Compile Include="View Models\CustomerEditViewModel.cs" />
     <Compile Include="View Models\EmailAddressListViewModel.cs" />
     <Compile Include="View Models\EmailAddressViewModel.cs" />
+    <Compile Include="View Models\ExperimentViewModel.cs" />
     <Compile Include="View Models\PostalAddressEditViewModel.cs" />
     <Compile Include="View Models\PostalAddressListViewModel.cs" />
     <Compile Include="View Models\PostalAddressViewModel.cs" />

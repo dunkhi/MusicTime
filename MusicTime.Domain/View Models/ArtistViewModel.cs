@@ -31,6 +31,7 @@ namespace MusicTime.Domain.View_Models
 
     public IEnumerable<SelectListItem> Bands { get; set; }
     public int BandId { get; set; }
+    public int[] BandsIds { get; set; }
 
     public virtual Band Band { get; set; }
   }

@@ -47,3 +47,4 @@ C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.cs
 C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.csproj.CopyComplete
 C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.dll
 C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.pdb
+C:\Users\craig\source\repos\MusicTime\MusicTime.Data\obj\Debug\MusicTime.Data.Migrations.temp.resources

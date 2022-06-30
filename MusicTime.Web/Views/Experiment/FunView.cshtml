@@ -1,0 +1,48 @@
+
+@{
+    ViewBag.Title = "FunView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+  #heading {
+    color: orange;
+  }
+
+  h1 {
+    width: 200px;
+    height: 200px;
+    background-color: black;
+  }
+</style>
+<h1></h1>
+<h2>FunView</h2>
+<div>
+  
+  <p id="heading">This is going to be a fun html and css practice view!</p>
+  <input type="button" id="btnGetRegions" value="Get Regions" onclick="getRegionsPartial()"/>
+</div>
+<div id="divregions"></div>
+
+<script type="text/javascript">
+  var count = 0;
+  function getRegionsPartial(pnumber = 0) {
+    var url = '@Url.Action("GetRegionsPaging")';
+    var realnumber = $("#hdnPageNumber").val();
+    count++;
+    console.log('pnumber: ' + pnumber);
+    if (realnumber == null || (realnumber == 0 && pnumber == -1)) {
+      realnumber = 0;
+    }
+    else {
+      realnumber = parseInt(realnumber) + parseInt(pnumber);
+    }
+
+    $.post(url,
+      {
+        pagenumber: realnumber
+      })
+      .done(function (result) {
+        $("#divregions").html(result);
+      })
+  }
+</script>

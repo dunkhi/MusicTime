@@ -1,0 +1,30 @@
+
+@model IEnumerable<MusicTime.Domain.Region>
+<input type="hidden" id="hdnPageNumber" value="@ViewBag.PageNumber" />
+<table class="table">
+  <tr>
+    <th>
+      @Html.DisplayNameFor(model => model.Country.CountryNameEnglish)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.RegionNameEnglish)
+    </th>
+    <th></th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.Country.CountryNameEnglish)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.RegionNameEnglish)
+      </td>
+    </tr>
+  }
+
+</table>
+<input type="button" id="btnPrev" class="btn btn-default" value="Previous" onclick="getRegionsPartial(-1)"/>
+<input type="button" id="btnNext" class="btn btn-default" value="Next" onclick="getRegionsPartial(1)"/>
+

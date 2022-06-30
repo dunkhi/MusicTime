@@ -1,0 +1,51 @@
+@model MusicTime.Domain.View_Models.ExperimentViewModel
+<head>
+
+  @*<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0-beta1/js/bootstrap.min.js"></script>*@
+  <link rel="stylesheet" href="~/Content/bootstrap-multiselect.css" />
+  <script type="text/javascript" src="~/Scripts/bootstrap-multiselect.js"></script>
+  @Styles.Render("~/Content/jqueryui")
+  @Styles.Render("~/Content/typeahead")
+</head>
+<p>
+  @Html.ActionLink("Create New", "Create")
+</p>
+
+<body>
+  @using (Html.BeginForm("Index2", "Artists", FormMethod.Post))
+      {
+        @Html.ListBoxFor(m => m.BandIds, Model.Bands, new { @class = "listbox", @id="ddlBands" })
+        @Html.DropDownListFor(m => m.BandIds, Model.Bands, new { @class = "listbox", @id="ddlBandos"})
+        @Html.DropDownList("Bands")
+      }
+</body>
+
+@section Scripts{
+  <script type="text/javascript" src="~/Scripts/handlebars-v4.7.7.js"></script>
+}
+
+<script type="text/javascript">
+  $(function () {
+    $('.listbox').multiselect({
+      includeSelectAllOption: true,
+      onChange: function (element, checked) {
+        var bands = $('#ddlBands option:selected');
+        var selected = [];
+        $(bands).each(function (index, band) {
+          selected.push([$(this).val()]);
+        })
+        console.log(selected);
+      }
+    });
+
+    $('#ddlBandos').multiselect({
+      includeSelectAllOption: true
+    });
+
+    $('#Bands').multiselect({
+      includeSelectAllOption: true
+    });
+  });
+
+
+</script>

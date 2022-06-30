@@ -51,6 +51,8 @@ namespace MusicTime.Data
 
     public System.Data.Entity.DbSet<MusicTime.Domain.Product> Products { get; set; }
 
+    public System.Data.Entity.DbSet<MusicTime.Domain.View_Models.ArtistEditViewModel> ArtistEditViewModels { get; set; }
+
     //public System.Data.Entity.DbSet<MusicTime.Domain.View_Models.ArtistEditViewModel> ArtistEditViewModels { get; set; }
 
     //public System.Data.Entity.DbSet<MusicTime.Domain.View_Models.UserEditViewModel> UserEditViewModels { get; set; }
